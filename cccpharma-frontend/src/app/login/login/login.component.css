@@ -5,12 +5,13 @@
 
 .box {
     grid-column: 2 / 4;
-    border-radius: 1px solid black;
     margin-top: 100px;
     display: inline-block; 
     padding: 32px 48px 50px 48px; 
-    border: 2px solid #EEE;
+    border: 1px solid rgb(221, 220, 220);
     border-radius: 20px;
+    background:rgb(253,253,253);
+    box-shadow: 1px 1px 1px;
 }
 
 h1 {
