@@ -32,7 +32,6 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "category_id")
-    @NonNull
     private Category category;
 
     @OneToMany(mappedBy = "product")
