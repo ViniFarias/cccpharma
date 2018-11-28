@@ -5,6 +5,8 @@ import com.cccpharma.domain.repository.LotRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.validation.constraints.Null;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +45,14 @@ public class LotServiceImpl implements LotService {
         }
         if(isNull(lot.getProductsQuantity())) {
             throw new NullPointerException("Products quantity is null!");
+        }
+        if(isNull(lot.getProduct())) {
+            throw new NullPointerException("Product is null!");
+        }
+
+        ProductServiceImpl productServiceImpl = new ProductServiceImpl();
+        if(!productServiceImpl.existsById(lot.getProduct().getBarcode())) {
+            throw new RuntimeException("Product not found!");
         }
 
         return lotRepository.save(lot);
