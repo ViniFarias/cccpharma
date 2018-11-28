@@ -23,7 +23,4 @@ public class Category {
     @Column
     @NonNull
     private Double discount;
-
-    @OneToMany(mappedBy = "category")
-    private List<Product> products;
 }

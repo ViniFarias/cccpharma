@@ -1,10 +1,9 @@
 package com.cccpharma.domain.orm;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
-import org.springframework.lang.Nullable;
-
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
 @Entity
 @Getter
@@ -17,17 +16,16 @@ public class Lot {
     @GeneratedValue
     private Long id;
 
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy", locale = "pt-BR", timezone = "Brazil/East")
     @Column
-    @NonNull
     private Date expirationDate;
 
     @Column
-    @NonNull
     private Integer productsQuantity;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    @NonNull
     private Product product;
 
 }
