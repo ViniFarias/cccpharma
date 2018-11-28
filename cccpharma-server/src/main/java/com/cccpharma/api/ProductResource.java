@@ -1,6 +1,5 @@
 package com.cccpharma.api;
 
-import com.cccpharma.domain.orm.Category;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.hateoas.ResourceSupport;
