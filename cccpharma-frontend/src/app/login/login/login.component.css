@@ -1,0 +1,36 @@
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.box {
+    grid-column: 2 / 4;
+    margin-top: 100px;
+    display: inline-block; 
+    padding: 32px 48px 50px 48px; 
+    border: 1px solid rgb(221, 220, 220);
+    border-radius: 20px;
+    background:rgb(253,253,253);
+    box-shadow: 1px 1px 1px;
+}
+
+h1 {
+    text-align: center;
+}
+
+div.row {
+    margin-bottom: 0%;
+}
+
+form.a {
+    align-items: center;
+}
+
+.center-button {
+    display: flex;
+    justify-content: center;
+}
+
+#button-login {
+    width: 100px;
+}
