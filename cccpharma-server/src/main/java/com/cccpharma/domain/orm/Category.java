@@ -3,6 +3,7 @@ package com.cccpharma.domain.orm;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -13,14 +14,12 @@ import java.util.List;
 public class Category {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column
-    @NonNull
+    @NotNull
     private String name;
 
-    @Column
-    @NonNull
+    @NotNull
     private Double discount;
 }

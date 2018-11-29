@@ -1,8 +1,11 @@
 package com.cccpharma.domain.orm;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -13,17 +16,19 @@ import java.util.List;
 public class Sale {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column
-    @NonNull
-    private Integer itemsQuantity;
+    @NotNull
+    private Double value;
 
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy", locale = "pt-BR", timezone = "Brazil/East")
     @Column
-    @NonNull
-    private Double finalValue;
+    @NotNull
+    private Date saleDate;
 
     @OneToMany(mappedBy = "sale")
-    private List<Item> items;
+    private List<SoldProduct> soldProducts;
 }

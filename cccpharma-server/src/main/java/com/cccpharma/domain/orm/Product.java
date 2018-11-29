@@ -2,7 +2,7 @@ package com.cccpharma.domain.orm;
 
 import lombok.*;
 import javax.persistence.*;
-import java.util.List;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Getter
@@ -12,22 +12,23 @@ import java.util.List;
 public class Product {
 
     @Id
+    @NotNull
     private String barcode;
 
-    @Column
+    @NotNull
     private String name;
 
-    @Column
+    @NotNull
     private String manufacturer;
 
-    @Column
-    @NonNull
+    @NotNull
     private boolean available;
 
-    @Column
+    @NotNull
     private Double price;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
+    @NotNull
     private Category category;
 }
