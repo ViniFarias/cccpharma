@@ -1,0 +1,65 @@
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.box {
+    grid-column: 1 / 5;
+    margin-top: 10px;
+    align-content: center;
+    justify-content: center;
+}
+
+h1 {
+    text-align: center;
+}
+
+div.row {
+    margin-bottom: 0%;
+}
+
+form.a {
+    align-items: center;
+}
+
+.center-button {
+    display: flex;
+    justify-content: center;
+}
+
+#button-login {
+    width:10px;
+}
+
+
+.card-panel {
+    width: 400px;
+    height: 400px;
+}
+
+
+ul {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+
+li {
+    display:inline;
+    margin: 1em;
+}
+
+#select_all { }
+#food { }
+#comestic { }
+#medicines { }
+#personal { }
+
+.option :hover {
+    background: rgb(24, 221, 146);
+}
+
+.option :hover {
+    background: rgb(24, 221, 146);
+}
