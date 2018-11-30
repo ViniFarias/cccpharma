@@ -20,6 +20,7 @@ public class LotServiceImpl implements LotService {
     private LotRepository lotRepository;
 
     public List<Lot> findAll() {
+
         Iterable<Lot> lots = lotRepository.findAll();
         List<Lot> lotsResult = new ArrayList<>();
 
@@ -31,6 +32,10 @@ public class LotServiceImpl implements LotService {
     }
 
     public Lot findById(Long id) {
+
+        if(isNull(id)) {
+            throw new NullPointerException("Lot id is null!");
+        }
         if(!lotRepository.existsById(id)) {
             throw new RuntimeException("Lot not found!");
         }
@@ -40,6 +45,7 @@ public class LotServiceImpl implements LotService {
 
 
     public Lot save(Lot lot) {
+
         if(isNull(lot.getExpirationDate())) {
             throw new NullPointerException("Expiration date is null!");
         }
@@ -59,6 +65,10 @@ public class LotServiceImpl implements LotService {
     }
 
     public void deleteById(Long id) {
+
+        if(isNull(id)) {
+            throw new NullPointerException("Lot id is null!");
+        }
         if(!lotRepository.existsById(id)) {
             throw new RuntimeException("Lot not found!");
         }
