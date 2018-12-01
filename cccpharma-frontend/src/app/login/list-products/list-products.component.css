@@ -60,6 +60,10 @@ li {
     background: rgb(24, 221, 146);
 }
 
-.option :hover {
-    background: rgb(24, 221, 146);
+.ative {
+    background: #ee6e73;
+}
+
+.not-ative {
+    background: #26a69a;
 }

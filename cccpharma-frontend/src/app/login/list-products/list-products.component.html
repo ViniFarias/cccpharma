@@ -1,9 +1,9 @@
 <ul>
-  <li id="select_all"><a class="btn-floating btn-large option"><i class="material-icons">select_all</i></a></li>
-  <li id="food"><a class="btn-floating btn-large option"><i class="material-icons">local_pizza</i></a></li>
-  <li id="comestic"><a class="btn-floating btn-large option"><i class="material-icons">brush</i></a></li>
-  <li id="medicines"><a class="btn-floating btn-large option"><i class="material-icons">local_pharmacy</i></a></li>
-  <li id="personal"><a class="btn-floating btn-large option"><i class="material-icons">wc</i></a></li>
+  <li (click)="selectOption('selectAll')"><a [ngClass]="{'not-ative': !selectAllColor, 'ative': selectAllColor}" class="btn-floating btn-large option"><i class="material-icons">select_all</i></a></li>
+  <li (click)="selectOption('foodColor')"><a [ngClass]="{'not-ative': !foodColor, 'ative': foodColor}" class="btn-floating btn-large option"><i class="material-icons">local_pizza</i></a></li>
+  <li (click)="selectOption('comesticColor')"><a [ngClass]="{'not-ative': !comesticColor, 'ative': comesticColor}" class="btn-floating btn-large option"><i class="material-icons">brush</i></a></li>
+  <li (click)="selectOption('medicinesColor')"><a [ngClass]="{'not-ative': !medicinesColor, 'ative': medicinesColor}" class="btn-floating btn-large option"><i class="material-icons">local_pharmacy</i></a></li>
+  <li (click)="selectOption('personalColor')"><a [ngClass]="{'not-ative': !personalColor, 'ative': personalColor}" class="btn-floating btn-large option"><i class="material-icons">wc</i></a></li>
 </ul>
 
 <div class="grid">
