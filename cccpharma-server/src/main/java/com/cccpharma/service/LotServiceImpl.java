@@ -3,6 +3,7 @@ package com.cccpharma.service;
 import com.cccpharma.domain.orm.Lot;
 import com.cccpharma.domain.repository.LotRepository;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +15,14 @@ import static java.util.Objects.isNull;
 
 @Service
 @AllArgsConstructor
+@NoArgsConstructor
 public class LotServiceImpl implements LotService {
 
     @Autowired
     private LotRepository lotRepository;
+
+    @Autowired
+    private ProductServiceImpl productServiceImpl;
 
     public List<Lot> findAll() {
 
@@ -56,7 +61,6 @@ public class LotServiceImpl implements LotService {
             throw new NullPointerException("Product is null!");
         }
 
-        ProductServiceImpl productServiceImpl = new ProductServiceImpl();
         if(!productServiceImpl.existsById(lot.getProduct().getBarcode())) {
             throw new RuntimeException("Product not found!");
         }

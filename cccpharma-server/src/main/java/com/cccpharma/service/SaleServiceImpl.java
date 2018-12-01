@@ -4,6 +4,7 @@ import com.cccpharma.domain.orm.Sale;
 import com.cccpharma.domain.orm.SoldProduct;
 import com.cccpharma.domain.repository.SaleRepository;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
@@ -12,11 +13,15 @@ import java.util.List;
 import static java.util.Objects.isNull;
 
 @Service
+@NoArgsConstructor
 @AllArgsConstructor
 public class SaleServiceImpl implements SaleService {
 
     @Autowired
     private SaleRepository saleRepository;
+
+    @Autowired
+    private SoldProductServiceImpl soldProductService;
 
     public List<Sale> findAll() {
 
@@ -28,6 +33,18 @@ public class SaleServiceImpl implements SaleService {
         }
 
         return salesResult;
+    }
+
+    public Sale findById(Long id) {
+
+        if(isNull(id)) {
+            throw new NullPointerException("Sale id is null!");
+        }
+        if(!saleRepository.existsById(id)) {
+            throw new RuntimeException("Sale not found!");
+        }
+
+        return saleRepository.findById(id).get();
     }
 
     public Sale save(Sale sale) {
@@ -42,25 +59,14 @@ public class SaleServiceImpl implements SaleService {
             throw new NullPointerException("Sale value is null!");
         }
 
-        SoldProductServiceImpl soldProductService = new SoldProductServiceImpl();
+        Sale saleSaved = saleRepository.save(sale);
 
         for(SoldProduct soldProduct : sale.getSoldProducts()) {
+            soldProduct.setSale(saleSaved);
             soldProductService.save(soldProduct);
         }
 
-        return saleRepository.save(sale);
-    }
-
-    public Sale findById(Long id) {
-
-        if(isNull(id)) {
-            throw new NullPointerException("Sale id is null!");
-        }
-        if(!saleRepository.existsById(id)) {
-            throw new RuntimeException("Sale not found!");
-        }
-
-        return saleRepository.findById(id).get();
+        return saleSaved;
     }
 
     public void deleteById(Long id) {

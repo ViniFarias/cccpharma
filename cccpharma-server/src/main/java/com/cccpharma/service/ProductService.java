@@ -2,10 +2,13 @@ package com.cccpharma.service;
 
 import com.cccpharma.domain.orm.Product;
 
+import java.util.List;
+
 public interface ProductService {
 
-    Product getById(String id);
+    Product findById(String id);
     Product save(Product product);
-    void delete(String id);
+    void deleteById(String id);
+    List<Product> findAll();
 //    Product update(Product product);
 }
