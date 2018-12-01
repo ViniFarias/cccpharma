@@ -1,6 +1,8 @@
 package com.cccpharma.domain.orm;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,6 +15,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = "soldProducts")
 public class Sale {
 
     @Id
@@ -30,5 +33,6 @@ public class Sale {
     private Date saleDate;
 
     @OneToMany(mappedBy = "sale")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<SoldProduct> soldProducts;
 }
