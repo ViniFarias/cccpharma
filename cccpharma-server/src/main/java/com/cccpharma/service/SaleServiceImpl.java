@@ -78,6 +78,12 @@ public class SaleServiceImpl implements SaleService {
             throw new RuntimeException("Sale not found!");
         }
 
+        Sale sale = saleRepository.findById(id).get();
+
+        for(SoldProduct soldProduct : sale.getSoldProducts()) {
+            soldProductService.deleteById(soldProduct.getId());
+        }
+
         saleRepository.deleteById(id);
     }
 }
