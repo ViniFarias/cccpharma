@@ -1,43 +1,43 @@
 package com.cccpharma.api;
 
-import com.cccpharma.domain.orm.Lot;
-import com.cccpharma.service.LotService;
+import com.cccpharma.domain.orm.Category;
+import com.cccpharma.service.CategoryService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/lots")
-public class LotRestService {
+@RequestMapping("/categories")
+public class CategoryRestService {
 
     @Autowired
-    private LotService lotService;
+    private CategoryService categoryService;
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<Lot> findAll() {
-        return lotService.findAll();
+    public List<Category> findAll() {
+        return categoryService.findAll();
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Lot findById(@PathVariable Long id) {
-        return lotService.findById(id);
+    public Category findById(@PathVariable Long id) {
+        return categoryService.findById(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Lot save(@RequestBody Lot lot) {
-        return lotService.save(lot);
+    public Category save(@RequestBody Category category) {
+        return categoryService.save(category);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteById(@PathVariable Long id) {
-        lotService.deleteById(id);
+        categoryService.deleteById(id);
     }
-
 }

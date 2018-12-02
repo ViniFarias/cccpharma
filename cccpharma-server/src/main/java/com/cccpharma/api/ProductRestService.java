@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -17,10 +16,15 @@ public class ProductRestService {
     @Autowired
     private ProductService productService;
 
+    @GetMapping
+    public List<Product> findAll() {
+        return productService.findAll();
+    }
+
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Product getById(@PathVariable  String id) {
-        return productService.getById(id);
+    public Product findById(@PathVariable  String id) {
+        return productService.findById(id);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -31,7 +35,7 @@ public class ProductRestService {
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(method = RequestMethod.DELETE)
-    public void delete(@PathVariable String id) {
-         productService.delete(id);
+    public void deleteById(@PathVariable String id) {
+         productService.deleteById(id);
     }
 }

@@ -3,6 +3,7 @@ package com.cccpharma.service;
 
 import com.cccpharma.domain.orm.Lot;
 
+import java.util.Date;
 import java.util.List;
 
 public interface LotService {

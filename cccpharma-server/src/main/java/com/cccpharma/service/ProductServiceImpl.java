@@ -3,39 +3,53 @@ package com.cccpharma.service;
 import com.cccpharma.domain.orm.Product;
 import com.cccpharma.domain.repository.ProductRepository;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
+import java.util.ArrayList;
+import java.util.List;
+import static java.util.Objects.isNull;
 
 @Service
+@NoArgsConstructor
 @AllArgsConstructor
 public class ProductServiceImpl implements ProductService {
 
+    @Autowired
     private ProductRepository productRepository;
 
-    @Override
-    public Product getById(String id) {
-        Product product = productRepository.findById(id).get();
-        if(product == null) {
-            throw new RuntimeException("Product not found!");
+    public List<Product> findAll() {
+
+        Iterable<Product> products = productRepository.findAll();
+        List<Product> productsResult = new ArrayList<>();
+
+        for(Product product : products) {
+            productsResult.add(product);
         }
-        return product;
+
+        return productsResult;
     }
 
-    @Override
+    public Product findById(String id) {
+
+        if(isNull(id)) {
+            throw new NullPointerException("Product id is null!");
+        }
+        if(!productRepository.existsById(id)) {
+            throw new RuntimeException("Product not found!");
+        }
+        return productRepository.findById(id).get();
+    }
+
     public Product save(Product product) {
         return productRepository.save(product);
     }
 
-    public void delete(String id) {
+    public void deleteById(String id) {
         productRepository.deleteById(id);
     }
 
-
-//    @Override
-//    public Product update(Product product) {
-//        productRepository.de
-//        return null;
-//    }
-
+    public boolean existsById(String id) {
+        return productRepository.existsById(id);
+    }
 }
