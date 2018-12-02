@@ -39,4 +39,5 @@ public class LotRestService {
     public void deleteById(@PathVariable Long id) {
         lotService.deleteById(id);
     }
+
 }
