@@ -1,40 +1,22 @@
-<ul>
+<ul id="options">
   <li (click)="selectOption('selectAll')"><a [ngClass]="{'not-ative': !selectAllColor, 'ative': selectAllColor}" class="btn-floating btn-large option"><i class="material-icons">select_all</i></a></li>
   <li (click)="selectOption('foodColor')"><a [ngClass]="{'not-ative': !foodColor, 'ative': foodColor}" class="btn-floating btn-large option"><i class="material-icons">local_pizza</i></a></li>
   <li (click)="selectOption('comesticColor')"><a [ngClass]="{'not-ative': !comesticColor, 'ative': comesticColor}" class="btn-floating btn-large option"><i class="material-icons">brush</i></a></li>
   <li (click)="selectOption('medicinesColor')"><a [ngClass]="{'not-ative': !medicinesColor, 'ative': medicinesColor}" class="btn-floating btn-large option"><i class="material-icons">local_pharmacy</i></a></li>
   <li (click)="selectOption('personalColor')"><a [ngClass]="{'not-ative': !personalColor, 'ative': personalColor}" class="btn-floating btn-large option"><i class="material-icons">wc</i></a></li>
+  <li><a class="btn-floating btn option"><i class="material-icons">filter_list</i></a></li>
 </ul>
+
+
 
 <div class="grid">
 
   <div class="row box">
-    <div class="col s12 m5">
-      <div class="card-panel">
-        <form class="col s12">
-  
-          <h1>Login</h1>
-    
-          <div class="row">
-            <div class="input-field col s12">
-              <input id="email" type="email" class="validate">
-              <label for="email">Email</label>
-            </div>
-          </div>
-    
-          <div class="row">
-            <div class="input-field col s12">
-              <input id="password" type="password" class="validate">
-              <label for="password">Password</label>
-            </div>
-          </div>
-    
-    
-          <div class="center-button">
-            <a id="button-login"class="waves-effect waves-light btn-small center">LOGIN</a>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
+    <ul class="collection with-header">
+        <li class="collection-header"><h4>{{ category }}</h4><br></li>
+        <li class="collection-item" *ngFor="let item of itens; let i = index">
+            Nome: {{ item.name }} <br>
+            <strong>Preço:  {{ calculePrice(item) }} R$</strong> <br>
+        </li>
+      </ul>
 </div>

@@ -7,6 +7,7 @@ declare var $: any;
 })
 export class ListProductsComponent implements OnInit {
 
+  
   // Colors
   foodColor: boolean;
   comesticColor: boolean;
@@ -14,9 +15,11 @@ export class ListProductsComponent implements OnInit {
   personalColor: boolean;
   selectAllColor: boolean;
 
-
+  category: string;
+  itens: any;
   constructor() { 
     this.toAllColor(false);
+    this.category = 'Nenhuma categoria selecionada';
   }
 
   ngOnInit() {
@@ -34,6 +37,32 @@ export class ListProductsComponent implements OnInit {
 
   selectOption(name: string) {
     this.color(name);
+    this.showCategory(name.replace('Color',''))
+    
+    if (this.category == 'Produtos')
+      this.itens = this.products;
+    else {
+      this.itens = this.products.filter(obj => obj.category.name === this.category);
+    }
+  }
+
+  showCategory(name) {
+    let resp = '';
+    
+    if (this.selectAllColor) {
+      resp = 'Produtos';
+    } else if (this.foodColor) {
+      resp = 'Alimentos';
+    } else if(this.comesticColor) {
+      resp = 'Cosméticos';
+    } else if(this.medicinesColor) {
+      resp = 'Medicamentos';
+    } else if(this.personalColor) {
+      resp = 'Higiene Pessoal';
+    } else {
+      resp = 'Nenhuma categoria selecionada';
+    }
+    this.category = resp;
   }
 
   toAllColor(op: boolean) {
@@ -43,5 +72,61 @@ export class ListProductsComponent implements OnInit {
     this.personalColor = op;
     this.selectAllColor = op;
   }
+
+
+  calculePrice(item) {
+    return item.price * (1 - item.category.discount);
+  }
+
+  public products = [
+    {
+      "barcode": "12345678",
+      "name": "Perfume 1",
+      "manufacturer": "Fab1",
+      "available": true,
+      "price": 35,
+      "category": {
+          "name": "Cosméticos",
+          "discount": 0.1
+      }
+    },
+
+    {
+      "barcode": "12345678",
+      "name": "Bolo 1",
+      "manufacturer": "Fab1",
+      "available": true,
+      "price": 10,
+      "category": {
+          "name": "Alimentos",
+          "discount": 0.1
+      }
+    },
+
+    {
+      "barcode": "12345678",
+      "name": "Escova Dental",
+      "manufacturer": "Fab1",
+      "available": true,
+      "price": 7,
+      "category": {
+          "name": "Higiene Pessoal",
+          "discount": 0.1
+      }
+    },
+
+    {
+      "barcode": "12345678",
+      "name": "Amoxilina",
+      "manufacturer": "Fab1",
+      "available": true,
+      "price": 55,
+      "category": {
+          "name": "Medicamentos",
+          "discount": 0.1
+      }
+    }
+
+  ];
   
 }
