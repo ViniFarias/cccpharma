@@ -23,8 +23,8 @@ public class ProductRestService {
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Product getById(@PathVariable  String id) {
-        return productService.getById(id);
+    public Product findById(@PathVariable  String id) {
+        return productService.findById(id);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -35,7 +35,7 @@ public class ProductRestService {
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(method = RequestMethod.DELETE)
-    public void delete(@PathVariable String id) {
-         productService.delete(id);
+    public void deleteById(@PathVariable String id) {
+         productService.deleteById(id);
     }
 }

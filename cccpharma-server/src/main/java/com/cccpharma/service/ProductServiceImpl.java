@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
-
 import static java.util.Objects.isNull;
 
 @Service
@@ -31,7 +30,6 @@ public class ProductServiceImpl implements ProductService {
         return productsResult;
     }
 
-    @Override
     public Product findById(String id) {
 
         if(isNull(id)) {
@@ -43,7 +41,6 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findById(id).get();
     }
 
-    @Override
     public Product save(Product product) {
         return productRepository.save(product);
     }
@@ -55,12 +52,4 @@ public class ProductServiceImpl implements ProductService {
     public boolean existsById(String id) {
         return productRepository.existsById(id);
     }
-
-
-//    @Override
-//    public Product update(Product product) {
-//        productRepository.de
-//        return null;
-//    }
-
 }
