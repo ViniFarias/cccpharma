@@ -18,6 +18,9 @@ public class SoldProductServiceImpl implements SoldProductService {
     @Autowired
     private SoldProductRepository soldProductRepository;
 
+    @Autowired
+    private LotService lotService;
+
     public List<SoldProduct> findAll() {
 
         Iterable<SoldProduct> soldProducts = soldProductRepository.findAll();
