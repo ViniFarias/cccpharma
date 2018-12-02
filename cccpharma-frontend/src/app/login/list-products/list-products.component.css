@@ -74,3 +74,16 @@ form.a {
 .collection-item {
     height: 100px;
 }
+
+.dropdown-content{
+   width: max-content !important;
+   height:auto !important;
+}
+
+
+#dropdown1 li {
+    margin: 0px;
+}
+
+#dropdown1 li a {
+}

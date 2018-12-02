@@ -17,10 +17,12 @@ export class ListProductsComponent implements OnInit {
 
   category: string;
   itens: any;
+  close: boolean;
   constructor() { 
     this.toAllColor(false);
     this.category = 'Nenhuma categoria selecionada';
   }
+
 
   ngOnInit() {
     this.toAllColor(false);
@@ -31,6 +33,7 @@ export class ListProductsComponent implements OnInit {
       const color = !this.selectAllColor;
       this.toAllColor(color);
     } else {
+      this.toAllColor(false);
       this[name] = !this[name];
     }
   }
@@ -44,6 +47,12 @@ export class ListProductsComponent implements OnInit {
     else {
       this.itens = this.products.filter(obj => obj.category.name === this.category);
     }
+  }
+
+
+  selectFilter(op: string){
+    this.closeDropdown();
+    console.log(op);
   }
 
   showCategory(name) {
@@ -76,6 +85,19 @@ export class ListProductsComponent implements OnInit {
 
   calculePrice(item) {
     return item.price * (1 - item.category.discount);
+  }
+
+  openDropdow() {
+    $(document).ready(function(){
+      $('.dropdown-trigger').dropdown();
+      $('.dropdown-trigger').dropdown('open');
+    });
+  }
+
+  closeDropdown() {
+    $('#dropdown1').click(function (event) {
+      event.stopPropagation();
+    });
   }
 
   public products = [
