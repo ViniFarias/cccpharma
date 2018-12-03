@@ -38,6 +38,16 @@ export class ListProductsComponent implements OnInit {
     }
   }
 
+  displayName(name: string) {
+    var e = document.getElementById('options');
+    e.onmouseover = function() {
+      document.getElementById('popup' + name).style.display = 'block';
+    }
+    e.onmouseout = function() {
+      document.getElementById('popup' + name).style.display = 'none';
+    }
+  }
+
   selectOption(name: string) {
     this.color(name);
     this.showCategory(name.replace('Color',''))
