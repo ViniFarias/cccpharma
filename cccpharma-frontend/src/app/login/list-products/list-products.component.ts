@@ -62,7 +62,19 @@ export class ListProductsComponent implements OnInit {
 
   selectFilter(op: string){
     this.closeDropdown();
-    console.log(op);
+    this.sortArray(op);
+  }
+
+  sortArray(type) {
+    this.products.sort((a: any, b: any) => {
+      if (a[type] < b[type]) {
+        return -1;
+      } else if (a[type] > b[type]) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
   }
 
   showCategory(name) {
@@ -117,10 +129,12 @@ export class ListProductsComponent implements OnInit {
       "manufacturer": "Fab1",
       "available": true,
       "price": 35,
+      "expirationDate": "10/01/2020",
       "category": {
           "name": "Cosméticos",
           "discount": 0.1
-      }
+      },
+      
     },
 
     {
@@ -129,10 +143,11 @@ export class ListProductsComponent implements OnInit {
       "manufacturer": "Fab1",
       "available": true,
       "price": 10,
+      "expirationDate": "07/01/2020",
       "category": {
           "name": "Alimentos",
           "discount": 0.1
-      }
+      },
     },
 
     {
@@ -141,6 +156,7 @@ export class ListProductsComponent implements OnInit {
       "manufacturer": "Fab1",
       "available": true,
       "price": 7,
+      "expirationDate": "07/01/2023",
       "category": {
           "name": "Higiene Pessoal",
           "discount": 0.1
@@ -153,6 +169,7 @@ export class ListProductsComponent implements OnInit {
       "manufacturer": "Fab1",
       "available": true,
       "price": 55,
+      "expirationDate": "07/01/2024",
       "category": {
           "name": "Medicamentos",
           "discount": 0.1

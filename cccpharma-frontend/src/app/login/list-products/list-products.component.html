@@ -29,6 +29,7 @@
         <li class="collection-item" *ngFor="let item of itens; let i = index">
             Nome: {{ item.name }} <br>
             <strong>Preço:  {{ calculePrice(item) }} R$</strong> <br>
+            {{ item.expirationDate }}
         </li>
       </ul>
 </div>
@@ -36,9 +37,7 @@
 
 <!-- Dropdown Structure -->
 <ul id='dropdown1' class='dropdown-content'>
-  <li><a (click)="selectFilter('nome')"> Nome </a></li>
-  <li><a (click)="selectFilter('preço')"> Preço </a></li>
-  <li><a (click)="selectFilter('data')"> Data </a></li>
-  <li><a (click)="selectFilter('categoria')"> Categoria </a></li>
+  <li><a (click)="selectFilter('name')"> Nome </a></li>
+  <li><a (click)="selectFilter('price')"> Preço </a></li>
 </ul>
 
