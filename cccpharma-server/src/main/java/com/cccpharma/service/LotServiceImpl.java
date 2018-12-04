@@ -50,6 +50,22 @@ public class LotServiceImpl implements LotService {
         return lotRepository.findById(id).get();
     }
 
+    public List<Lot> findValidLotsByProductIdAndProductsQuantityGreaterThanZero(String productId) {
+        if(isNull(productId)) {
+            throw new NullPointerException("Product id is null!");
+        }
+
+        return lotRepository.findValidLotsByProductIdAndProductsQuantityGreaterThanZero(productId);
+    }
+
+    public List<Lot> findValidLotsByProductId(String productId) {
+        if(isNull(productId)) {
+            throw new NullPointerException("Product id is null!");
+        }
+
+        return lotRepository.findValidLotsByProductId(productId);
+    }
+
 
     public Lot save(Lot lot) {
 

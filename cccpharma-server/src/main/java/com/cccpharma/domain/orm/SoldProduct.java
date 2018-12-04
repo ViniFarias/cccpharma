@@ -1,5 +1,6 @@
 package com.cccpharma.domain.orm;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -8,9 +9,9 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @Builder
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = "sale")
 public class SoldProduct {
 
     @Id
@@ -23,6 +24,7 @@ public class SoldProduct {
     @ManyToOne
     @JoinColumn(name = "sale_id")
     @NotNull
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Sale sale;
 
     @ManyToOne

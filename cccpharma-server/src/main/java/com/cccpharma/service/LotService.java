@@ -11,5 +11,7 @@ public interface LotService {
     Lot findById(Long id);
     Lot save(Lot lot);
     List<Lot> findAll();
+    List<Lot> findValidLotsByProductIdAndProductsQuantityGreaterThanZero(String productId);
+    List<Lot> findValidLotsByProductId(String productId);
     void deleteById(Long id);
 }

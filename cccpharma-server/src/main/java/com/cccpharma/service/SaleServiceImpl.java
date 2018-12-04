@@ -21,7 +21,7 @@ public class SaleServiceImpl implements SaleService {
     private SaleRepository saleRepository;
 
     @Autowired
-    private SoldProductServiceImpl soldProductService;
+    private SoldProductService soldProductService;
 
     public List<Sale> findAll() {
 

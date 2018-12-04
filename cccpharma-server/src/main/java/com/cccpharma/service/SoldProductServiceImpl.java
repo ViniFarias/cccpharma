@@ -1,5 +1,6 @@
 package com.cccpharma.service;
 
+import com.cccpharma.domain.orm.Lot;
 import com.cccpharma.domain.orm.SoldProduct;
 import com.cccpharma.domain.repository.SoldProductRepository;
 import lombok.AllArgsConstructor;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
 import static java.util.Objects.isNull;
 
 @Service
@@ -58,6 +61,28 @@ public class SoldProductServiceImpl implements SoldProductService {
         }
         if(isNull(soldProduct.getSale())) {
             throw new NullPointerException("Sale is null!");
+        }
+
+        int soldProductsQuantity = soldProduct.getProductsQuantity();
+        List<Lot> availableLots = lotService.findValidLotsByProductIdAndProductsQuantityGreaterThanZero(soldProduct.getProduct().getBarcode());
+        int index = 0;
+
+        while(soldProductsQuantity != 0) {
+
+            Lot lot = availableLots.get(index);
+            int lotProductsQuantity = lot.getProductsQuantity();
+
+            if(lotProductsQuantity >= soldProductsQuantity) {
+                lot.setProductsQuantity(lotProductsQuantity - soldProductsQuantity);
+                soldProductsQuantity = 0;
+            }
+            else {
+                soldProductsQuantity -= lotProductsQuantity;
+                lot.setProductsQuantity(0);
+            }
+
+            lotService.save(lot);
+            index++;
         }
 
         return soldProductRepository.save(soldProduct);
