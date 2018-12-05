@@ -6,21 +6,21 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  type: string;
-
+  TYPE = "TYPE";
   ADMIN = 'ADMIN';
 
   constructor(private router: Router) { }
 
   login(body: any) {
     console.log(body);
-    this.type = this.ADMIN;
+    localStorage.setItem(this.TYPE, this.ADMIN);
     this.router.navigate(['/home']);
   }
 
 
   isLogged() {
-    if (this.type === this.ADMIN) {
+    const type = localStorage.getItem(this.TYPE);
+    if (type === this.ADMIN) {
       return true;
     } else {
       return false;
