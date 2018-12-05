@@ -23,9 +23,19 @@ public interface LotRepository extends CrudRepository<Lot, Long> {
     @Query(value =
             "SELECT * " +
             "FROM lot " +
-            "WHERE expiration_date > curdate() " +
-                    "AND products_quantity > 0 " +
+            "WHERE expiration_date > :date " +
+                    "AND available_products_quantity > 0 " +
                     "AND product_id = :productId " +
             "ORDER BY expiration_date", nativeQuery = true)
-    List<Lot> findValidLotsByProductIdAndProductsQuantityGreaterThanZero(@Param("productId") String productId);
+    List<Lot> findValidLotsByProductIdAndExpirationDateGraterThan(@Param("productId") String productId,
+                                                                  @Param("date") Date date);
+
+    @Query(value =
+            "SELECT * " +
+            "FROM lot " +
+            "WHERE expiration_date > :date " +
+                "AND product_id = :productId " +
+            "ORDER BY expiration_date", nativeQuery = true)
+    List<Lot> findLotsByProductIdAndExpirationDateGreaterThan(@Param("productId") String productId,
+                                                              @Param("date") Date date);
 }

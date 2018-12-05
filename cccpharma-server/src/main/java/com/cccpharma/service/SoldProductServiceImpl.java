@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
 import static java.util.Objects.isNull;
 
 @Service
@@ -64,21 +62,21 @@ public class SoldProductServiceImpl implements SoldProductService {
         }
 
         int soldProductsQuantity = soldProduct.getProductsQuantity();
-        List<Lot> availableLots = lotService.findValidLotsByProductIdAndProductsQuantityGreaterThanZero(soldProduct.getProduct().getBarcode());
+        List<Lot> availableLots = lotService.findValidLotsByProductIdAndExpirationDateGreaterThan(soldProduct.getProduct().getBarcode(), soldProduct.getSale().getSaleDate());
         int index = 0;
 
         while(soldProductsQuantity != 0) {
 
             Lot lot = availableLots.get(index);
-            int lotProductsQuantity = lot.getProductsQuantity();
+            int lotAvailableProductsQuantity = lot.getAvailableProductsQuantity();
 
-            if(lotProductsQuantity >= soldProductsQuantity) {
-                lot.setProductsQuantity(lotProductsQuantity - soldProductsQuantity);
+            if(lotAvailableProductsQuantity >= soldProductsQuantity) {
+                lot.setAvailableProductsQuantity(lotAvailableProductsQuantity - soldProductsQuantity);
                 soldProductsQuantity = 0;
             }
             else {
-                soldProductsQuantity -= lotProductsQuantity;
-                lot.setProductsQuantity(0);
+                soldProductsQuantity -= lotAvailableProductsQuantity;
+                lot.setAvailableProductsQuantity(0);
             }
 
             lotService.save(lot);
@@ -95,6 +93,32 @@ public class SoldProductServiceImpl implements SoldProductService {
         }
         if(!soldProductRepository.existsById(id)) {
             throw new RuntimeException("Sold product not found!");
+        }
+
+        SoldProduct soldProduct = soldProductRepository.findById(id).get();
+
+        int soldProductsQuantity = soldProduct.getProductsQuantity();
+        List<Lot> availableLots = lotService.findLotsByProductIdAndExpirationDateGreaterThan(soldProduct.getProduct().getBarcode(), soldProduct.getSale().getSaleDate());
+        int index = 0;
+
+        while(soldProductsQuantity != 0) {
+
+            Lot lot = availableLots.get(index);
+            int lotProductsQuantity = lot.getProductsQuantityTotal();
+            int lotAvailableProductsQuantity = lot.getAvailableProductsQuantity();
+            int itemsAddQuantity = lotProductsQuantity - lotAvailableProductsQuantity;
+
+            if(itemsAddQuantity >= soldProductsQuantity) {
+                lot.setAvailableProductsQuantity(lotAvailableProductsQuantity + soldProductsQuantity);
+                soldProductsQuantity = 0;
+            }
+            else {
+                soldProductsQuantity -= itemsAddQuantity;
+                lot.setAvailableProductsQuantity(soldProductsQuantity);
+            }
+
+            lotService.save(lot);
+            index++;
         }
 
         soldProductRepository.deleteById(id);

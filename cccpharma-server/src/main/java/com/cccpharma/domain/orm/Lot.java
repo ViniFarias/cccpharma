@@ -24,7 +24,10 @@ public class Lot {
     private Date expirationDate;
 
     @NotNull
-    private Integer productsQuantity;
+    private Integer productsQuantityTotal;
+
+    @NotNull
+    private Integer availableProductsQuantity;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
