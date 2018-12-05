@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ProductService} from '../../services/product.service';
 declare var $: any;
 @Component({
   selector: 'app-list-products',
@@ -18,9 +19,10 @@ export class ListProductsComponent implements OnInit {
   category: string;
   itens: any;
   close: boolean;
-  constructor() { 
+  constructor(private productService: ProductService) {
     this.toAllColor(false);
     this.category = 'Nenhuma categoria selecionada';
+    this.getAllProducts();
   }
 
 
@@ -29,7 +31,7 @@ export class ListProductsComponent implements OnInit {
   }
 
   color(name: string) {
-    if (name == 'selectAll') {
+    if (name === 'selectAll') {
       const color = !this.selectAllColor;
       this.toAllColor(color);
     } else {
@@ -52,7 +54,7 @@ export class ListProductsComponent implements OnInit {
     this.color(name);
     this.showCategory(name.replace('Color',''))
     
-    if (this.category == 'Produtos')
+    if (this.category === 'Produtos')
       this.itens = this.products;
     else {
       this.itens = this.products.filter(obj => obj.category.name === this.category);
@@ -119,6 +121,13 @@ export class ListProductsComponent implements OnInit {
   closeDropdown() {
     $('#dropdown1').click(function (event) {
       event.stopPropagation();
+    });
+  }
+  getAllProducts() {
+    this.productService.getAllProject().subscribe( res => {
+      console.log(res['data']);
+    }, (err) => {
+      console.log(err);
     });
   }
 
