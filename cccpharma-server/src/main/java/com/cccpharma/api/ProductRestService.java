@@ -35,7 +35,7 @@ public class ProductRestService {
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(method = RequestMethod.DELETE)
-    public void deleteById(@PathVariable String id) {
-         productService.deleteById(id);
+    public void deleteById(@RequestBody Product product) {
+         productService.deleteById(product.getBarcode());
     }
 }
