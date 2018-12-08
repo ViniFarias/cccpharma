@@ -1,5 +1,6 @@
 package com.cccpharma.service;
 
+import com.cccpharma.domain.orm.Lot;
 import com.cccpharma.domain.orm.SoldProduct;
 import com.cccpharma.domain.repository.SoldProductRepository;
 import lombok.AllArgsConstructor;
@@ -60,6 +61,28 @@ public class SoldProductServiceImpl implements SoldProductService {
             throw new NullPointerException("Sale is null!");
         }
 
+        int soldProductsQuantity = soldProduct.getProductsQuantity();
+        List<Lot> availableLots = lotService.findValidLotsByProductIdAndExpirationDateGreaterThan(soldProduct.getProduct().getBarcode(), soldProduct.getSale().getSaleDate());
+        int index = 0;
+
+        while(soldProductsQuantity != 0) {
+
+            Lot lot = availableLots.get(index);
+            int lotAvailableProductsQuantity = lot.getAvailableProductsQuantity();
+
+            if(lotAvailableProductsQuantity >= soldProductsQuantity) {
+                lot.setAvailableProductsQuantity(lotAvailableProductsQuantity - soldProductsQuantity);
+                soldProductsQuantity = 0;
+            }
+            else {
+                soldProductsQuantity -= lotAvailableProductsQuantity;
+                lot.setAvailableProductsQuantity(0);
+            }
+
+            lotService.save(lot);
+            index++;
+        }
+
         return soldProductRepository.save(soldProduct);
     }
 
@@ -70,6 +93,32 @@ public class SoldProductServiceImpl implements SoldProductService {
         }
         if(!soldProductRepository.existsById(id)) {
             throw new RuntimeException("Sold product not found!");
+        }
+
+        SoldProduct soldProduct = soldProductRepository.findById(id).get();
+
+        int soldProductsQuantity = soldProduct.getProductsQuantity();
+        List<Lot> availableLots = lotService.findLotsByProductIdAndExpirationDateGreaterThan(soldProduct.getProduct().getBarcode(), soldProduct.getSale().getSaleDate());
+        int index = 0;
+
+        while(soldProductsQuantity != 0) {
+
+            Lot lot = availableLots.get(index);
+            int lotProductsQuantity = lot.getProductsQuantityTotal();
+            int lotAvailableProductsQuantity = lot.getAvailableProductsQuantity();
+            int itemsAddQuantity = lotProductsQuantity - lotAvailableProductsQuantity;
+
+            if(itemsAddQuantity >= soldProductsQuantity) {
+                lot.setAvailableProductsQuantity(lotAvailableProductsQuantity + soldProductsQuantity);
+                soldProductsQuantity = 0;
+            }
+            else {
+                soldProductsQuantity -= itemsAddQuantity;
+                lot.setAvailableProductsQuantity(soldProductsQuantity);
+            }
+
+            lotService.save(lot);
+            index++;
         }
 
         soldProductRepository.deleteById(id);

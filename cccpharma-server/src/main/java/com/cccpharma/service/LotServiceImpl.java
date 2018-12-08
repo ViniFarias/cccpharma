@@ -50,13 +50,44 @@ public class LotServiceImpl implements LotService {
         return lotRepository.findById(id).get();
     }
 
+    public List<Lot> findValidLotsByProductIdAndExpirationDateGreaterThan(String productId, Date date) {
+        if(isNull(productId)) {
+            throw new NullPointerException("Product id is null!");
+        }
+        if(isNull(date)) {
+            throw new NullPointerException("Date id is null!");
+        }
+
+        return lotRepository.findValidLotsByProductIdAndExpirationDateGraterThan(productId, date);
+    }
+
+    public List<Lot> findValidLotsByProductId(String productId) {
+        if(isNull(productId)) {
+            throw new NullPointerException("Product id is null!");
+        }
+
+        return lotRepository.findValidLotsByProductId(productId);
+    }
+
+    public List<Lot> findLotsByProductIdAndExpirationDateGreaterThan(String productId, Date date) {
+        if(isNull(productId)) {
+            throw new NullPointerException("Product id is null!");
+        }
+        if(isNull(date)) {
+            throw new NullPointerException("Date is null!");
+        }
+
+        return lotRepository.findLotsByProductIdAndExpirationDateGreaterThan(productId, date);
+    }
+
+
 
     public Lot save(Lot lot) {
 
         if(isNull(lot.getExpirationDate())) {
             throw new NullPointerException("Expiration date is null!");
         }
-        if(isNull(lot.getProductsQuantity())) {
+        if(isNull(lot.getProductsQuantityTotal())) {
             throw new NullPointerException("Products quantity is null!");
         }
         if(isNull(lot.getProduct())) {
