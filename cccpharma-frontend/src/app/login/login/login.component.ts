@@ -16,7 +16,12 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.authService.login('login');
+    const body = `
+    {
+      "username": "admin",
+      "password": ""
+    }`;
+    this.authService.login(body);
   }
 
 }
