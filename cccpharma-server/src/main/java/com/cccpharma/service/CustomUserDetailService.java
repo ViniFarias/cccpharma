@@ -12,9 +12,6 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * @author William Suane for DevDojo on 6/27/17.
- */
 @Component
 public class CustomUserDetailService implements UserDetailsService {
     private final UserRepository userRepository;
