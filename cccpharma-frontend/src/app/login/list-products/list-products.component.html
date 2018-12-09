@@ -20,6 +20,9 @@
   </li>
 </ul>
 
+<div *ngIf="isAdmin()" class="container">
+  <a (click)="openModal()" id="add_product" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
+</div>
 
 <div class="grid">
 
@@ -31,13 +34,71 @@
             <strong>Preço:  {{ calculePrice(item) }} R$</strong> <br>
             {{ item.expirationDate }}
         </li>
-      </ul>
+    </ul>
+  </div>
 </div>
 
 
-<!-- Dropdown Structure -->
+  <!-- Dropdown Structure -->
 <ul id='dropdown1' class='dropdown-content'>
   <li><a (click)="selectFilter('name')"> Nome </a></li>
   <li><a (click)="selectFilter('price')"> Preço </a></li>
 </ul>
 
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+
+    <h4>Cadastrar Produto</h4>
+    <form [formGroup]="productForm" class="col s12">
+
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="name" type="text" class="validate" formControlName="name">
+          <label for="name">Nome</label>
+        </div>
+
+        <div class="input-field col s6">
+          <input id="barcode" type="number" class="validate"  formControlName="password">
+          <label for="barcode">Código Barras</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="manufacturer" type="text" class="validate" formControlName="manufacturer">
+          <label for="manufacturer">Fabricante</label>
+        </div>
+
+        <div class="input-field col s6">
+          <select class="browser-default" formControlName="category">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="4">Alimentos</option>
+            <option value="1">Cosméticos</option>
+            <option value="3">Medicamentos</option>
+            <option value="2">Higiene Pessoal</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="input-field col s6">
+          <input id="price" type="number" class="validate"  formControlName="price">
+          <label for="price">Price</label>
+        </div>
+
+
+        <div class="input-field col s6">
+          <input id="available" type="text" class="validate" formControlName="available">
+          <label for="available">Situacao</label>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <a *ngIf="productForm.valid" (click)="registerProduct()" href="#!" class="modal-close waves-effect waves-green btn-flat">Cadastrar</a>
+  </div>
+</div>

@@ -28,7 +28,7 @@ export class AuthService {
     };
     console.log(this.url);
 
-    const request = this.http.post(this.url, body ,httpOptions);
+    const request = this.http.post(this.url, body, httpOptions);
 
     request.subscribe( res => {
       console.log(res);
