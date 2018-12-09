@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductService} from '../../services/product.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../../services/auth.service';
 declare var $: any;
 @Component({
   selector: 'app-list-products',
@@ -7,8 +9,6 @@ declare var $: any;
   styleUrls: ['./list-products.component.css']
 })
 export class ListProductsComponent implements OnInit {
-
-  
   // Colors
   foodColor: boolean;
   comesticColor: boolean;
@@ -21,16 +21,34 @@ export class ListProductsComponent implements OnInit {
   close: boolean;
 
   products: any;
-  
-  constructor(private productService: ProductService) {
+
+  productForm: FormGroup;
+
+  constructor(private productService: ProductService,
+              private formBuilder: FormBuilder,
+              private authSerive: AuthService) {
     this.toAllColor(false);
     this.category = 'Nenhuma categoria selecionada';
     this.getAllProducts();
+
+    this.inicializationForm();
+
   }
 
 
   ngOnInit() {
     this.toAllColor(false);
+  }
+
+  inicializationForm() {
+    this.productForm = this.formBuilder.group({
+      name: [null, [Validators.required]],
+      barcode: [null, [Validators.required]],
+      manufacturer: [null, [Validators.required]],
+      category: [null, [Validators.required]],
+      price: [null, [Validators.required]],
+      available: [null],
+    });
   }
 
   color(name: string) {
@@ -55,11 +73,11 @@ export class ListProductsComponent implements OnInit {
 
   selectOption(name: string) {
     this.color(name);
-    this.showCategory(name.replace('Color',''))
-    
-    if (this.category === 'Produtos')
+    this.showCategory(name.replace('Color',''));
+
+    if (this.category === 'Produtos') {
       this.itens = this.products;
-    else {
+    } else {
       this.itens = this.products.filter(obj => obj.category.name === this.category);
     }
   }
@@ -84,7 +102,7 @@ export class ListProductsComponent implements OnInit {
 
   showCategory(name) {
     let resp = '';
-    
+
     if (this.selectAllColor) {
       resp = 'Produtos';
     } else if (this.foodColor) {
@@ -126,11 +144,33 @@ export class ListProductsComponent implements OnInit {
       event.stopPropagation();
     });
   }
+
+
   getAllProducts() {
     this.productService.getAllProject().subscribe( res => {
       this.products = res;
     }, (err) => {
       console.log(err);
     });
+  }
+
+  openModal() {
+    $(document).ready(function() {
+      $('.modal').modal();
+      $('#modal1').modal('open');
+    });
+  }
+
+
+  registerProduct() {
+    const body = this.productForm.getRawValue();
+    body.category = { 'id': body.category};
+    this.productService.registerProduct(body);
+    this.getAllProducts();
+  }
+
+
+  isAdmin() {
+    return this.authSerive.isAdmin();
   }
 }
