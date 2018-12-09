@@ -44,14 +44,90 @@ form.a {
     justify-content: center;
     align-content: center;
     margin-bottom: 0%;
+    background-color: rgb(241, 241, 241);
 }
 
+#optionsDesc {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-bottom: 0%;
+    background-color: rgb(241, 241, 241);
+}
 
 #options li {
     display:inline;
     margin: 1em;
 }
 
+#optionsDesc li {
+    padding: 14px 14px;
+    font-size: 20px;
+    font-weight: bolder;
+    font-style: oblique;
+    color: white;
+    position: left;
+    display: inline;
+    margin: 1em;
+    background: #26a69a;
+    border-radius: 6px;
+}
+
+#names {
+    font-size: 24px;
+    font-weight: bolder;
+    font-style: oblique;
+    color: grey;
+    position: left;
+    display: inline;
+    margin: 1em;
+    border-radius: 6px;
+}
+
+#prices {
+    padding: 14px 14px;
+    font-size: 20px;
+    font-weight: bolder;
+    font-style: oblique;
+    color: white;
+    display: inline;
+    position: relative;
+    left: 9em;
+    margin: 1em;
+    background: #26a69a;
+    border-radius: 6px;
+}
+
+#realPrices {
+    padding: 14px 14px;
+    font-size: 20px;
+    font-weight: bolder;
+    font-style: oblique;
+    color: rgb(160, 34, 34);
+    float: left;
+    margin: 1em;
+    border-radius: 6px;
+}
+
+#discounts {
+    padding: 14px 14px;
+    font-size: 20px;
+    font-weight: bolder;
+    font-style: oblique;
+    color: white;
+    float: left;
+    margin: 1em;
+    background: #25a167;
+    border-radius: 6px; 
+}
+
+.names {
+    position: absolute;
+}
+
+.prices {
+    position: relative;
+}
 
 .option :hover {
     background: #ee6e73;

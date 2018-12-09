@@ -1,23 +1,27 @@
 <ul id="options">
-  <div id="popup" style="display: none">Selecionar tudo</div>
   <li id = "selectAll" (mouseover) = "displayName('selectAll')" (click)="selectOption('selectAll')"><a [ngClass]="{'not-ative': !selectAllColor, 'ative': selectAllColor}" class="btn-floating btn-large option"><i class="material-icons">select_all</i></a>
-    <div id="popupselectAll" style="display: none">Selecionar tudo</div>
   </li>
   <li id = "foodColor" (mouseover) = "displayName('foodColor')" (click)="selectOption('foodColor')"><a [ngClass]="{'not-ative': !foodColor, 'ative': foodColor}" class="btn-floating btn-large option"><i class="material-icons">local_pizza</i></a>
-    <div id="popupfoodColor" style="display: none">Comida</div>
   </li>
   <li id = "comesticColor" (mouseover) = "displayName('comesticColor')" (click)="selectOption('comesticColor')"><a [ngClass]="{'not-ative': !comesticColor, 'ative': comesticColor}" class="btn-floating btn-large option"><i class="material-icons">brush</i></a>
-    <div id="popupcomesticColor" style="display: none">Cosméticos</div>
   </li>
   <li id = "medicinesColor" (mouseover) = "displayName('medicinesColor')" (click)="selectOption('medicinesColor')"><a [ngClass]="{'not-ative': !medicinesColor, 'ative': medicinesColor}" class="btn-floating btn-large option"><i class="material-icons">local_pharmacy</i></a>
-    <div id="popupmedicinesColor" style="display: none">Medicamentos</div>
   </li>
   <li id = "personalColor" (mouseover) = "displayName('personalColor')"  (click)="selectOption('personalColor')"><a [ngClass]="{'not-ative': !personalColor, 'ative': personalColor}" class="btn-floating btn-large option"><i class="material-icons">wc</i></a>
-    <div id="popuppersonalColor" style="display: none">Higiene pessoal</div>
   </li>
   <li id = "openDropdow" (mouseover) = "displayName('openDropdow')" (click)="openDropdow()"><a data-target='dropdown1' class="dropdown-trigger btn-floating btn option"><i class="material-icons">filter_list</i></a>
-    <div id="popupopenDropdow" style="display: none">Filtrar</div>
   </li>
+</ul>
+
+<ul id = "optionsDesc">
+  <ul>
+    <li id="popupselectAll" style="display: none">Selecionar tudo</li>
+    <li id="popupfoodColor" style="display: none">Comida</li>
+    <li id="popupcomesticColor" style="display: none">Cosméticos</li>
+    <li id="popupmedicinesColor" style="display: none">Medicamentos</li>
+    <li id="popuppersonalColor" style="display: none">Higiene pessoal</li>
+    <li id="popupopenDropdow" style="display: none">Filtrar</li>
+  </ul>
 </ul>
 
 <div *ngIf="isAdmin()" class="container">
@@ -30,12 +34,24 @@
     <ul class="collection with-header">
         <li class="collection-header"><h4>{{ category }}</h4><br></li>
         <li class="collection-item" *ngFor="let item of itens; let i = index">
-            Nome: {{ item.name }} <br>
-            <strong>Preço:  {{ calculePrice(item) }} R$</strong> <br>
-            {{ item.expirationDate }}
+          <div  id = "names">
+              <strong>Nome: {{ item.name }} </strong><br>
+          </div>
+            <div *ngIf = "checkDiscount(item); else elseBlock">
+                <br><div id = "prices">
+                <strong>Preço:  {{ calculePrice(item) }} R$</strong> <br>
+              </div>
+            </div>
+              <ng-template #elseBlock>
+                <div id = "realPrices">
+                  <strong><s>Preço: {{ item.price }} R$ </s></strong> <br>
+                </div>
+                <div id = "discounts">
+                  <strong>Desconto:  {{ calculePrice(item) }} R$!</strong>
+                </div>
+              </ng-template>
         </li>
-    </ul>
-  </div>
+      </ul>
 </div>
 
 
