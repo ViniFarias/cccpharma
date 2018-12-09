@@ -8,9 +8,9 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class AuthService {
 
-  TYPE = "TYPE";
+  TYPE = 'TYPE';
   ADMIN = 'ADMIN';
-
+  TOKEN = 'TOKEN'
   url: string;
 
   constructor(
@@ -34,6 +34,12 @@ export class AuthService {
       console.log(res);
     }, (err) => {
       console.log(err);
+      const token = err.error.text; 
+      if ( token != undefined) {
+        localStorage.setItem(this.TOKEN, token);
+        localStorage.setItem(this.TYPE, this.ADMIN);
+        this.router.navigate(['/home']);
+      }
     });;
 
 
@@ -43,6 +49,9 @@ export class AuthService {
     // this.router.navigate(['/home']);
   }
 
+  getToken() {
+    return localStorage.getItem(this.TOKEN);
+  }
 
   isLogged() {
     const type = localStorage.getItem(this.TYPE);
