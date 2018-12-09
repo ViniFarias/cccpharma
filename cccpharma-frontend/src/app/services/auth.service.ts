@@ -34,19 +34,22 @@ export class AuthService {
       console.log(res);
     }, (err) => {
       console.log(err);
-      const token = err.error.text; 
-      if ( token != undefined) {
+      const token = err.error.text;
+      if ( token !== undefined) {
         localStorage.setItem(this.TOKEN, token);
         localStorage.setItem(this.TYPE, this.ADMIN);
         this.router.navigate(['/home']);
       }
-    });;
-
-
+    });
 
     // console.log(body);
     // localStorage.setItem(this.TYPE, this.ADMIN);
     // this.router.navigate(['/home']);
+  }
+
+  logout() {
+    localStorage.clear();
+    window.location.reload();
   }
 
   getToken() {
@@ -55,10 +58,20 @@ export class AuthService {
 
   isLogged() {
     const type = localStorage.getItem(this.TYPE);
+    if (type !== null ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  isAdmin() {
+    const type = localStorage.getItem(this.TYPE);
     if (type === this.ADMIN) {
       return true;
     } else {
       return false;
     }
   }
+
 }
