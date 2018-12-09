@@ -19,6 +19,9 @@ export class ListProductsComponent implements OnInit {
   category: string;
   itens: any;
   close: boolean;
+
+  products: any;
+  
   constructor(private productService: ProductService) {
     this.toAllColor(false);
     this.category = 'Nenhuma categoria selecionada';
@@ -125,66 +128,9 @@ export class ListProductsComponent implements OnInit {
   }
   getAllProducts() {
     this.productService.getAllProject().subscribe( res => {
-      console.log(res['data']);
+      this.products = res;
     }, (err) => {
       console.log(err);
     });
   }
-
-  public products = [
-    {
-      "barcode": "12345678",
-      "name": "Perfume 1",
-      "manufacturer": "Fab1",
-      "available": true,
-      "price": 35,
-      "expirationDate": "10/01/2020",
-      "category": {
-          "name": "Cosméticos",
-          "discount": 0.1
-      },
-      
-    },
-
-    {
-      "barcode": "12345678",
-      "name": "Bolo 1",
-      "manufacturer": "Fab1",
-      "available": true,
-      "price": 10,
-      "expirationDate": "07/01/2020",
-      "category": {
-          "name": "Alimentos",
-          "discount": 0.1
-      },
-    },
-
-    {
-      "barcode": "12345678",
-      "name": "Escova Dental",
-      "manufacturer": "Fab1",
-      "available": true,
-      "price": 7,
-      "expirationDate": "07/01/2023",
-      "category": {
-          "name": "Higiene Pessoal",
-          "discount": 0.1
-      }
-    },
-
-    {
-      "barcode": "12345678",
-      "name": "Amoxilina",
-      "manufacturer": "Fab1",
-      "available": true,
-      "price": 55,
-      "expirationDate": "07/01/2024",
-      "category": {
-          "name": "Medicamentos",
-          "discount": 0.1
-      }
-    }
-
-  ];
-  
 }

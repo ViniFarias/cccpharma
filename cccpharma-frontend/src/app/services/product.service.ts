@@ -17,10 +17,11 @@ export class ProductService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Access-Control-Allow-Origin': '*'
-
-  })
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU0NTE2Njk2MX0.6vK8Fwo95gpohES_t_gsWXbpUT9HCij_uQBSHQVbTkCbiUR447BlStjiZoLG0gFm4OhR0z_NVNH05sB5ysEG1g'
+      })
     };
+    console.log(this.url);
 
     const request = this.http.get(this.url, httpOptions);
 
