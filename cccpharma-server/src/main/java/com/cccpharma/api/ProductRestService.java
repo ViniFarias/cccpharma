@@ -45,20 +45,20 @@ public class ProductRestService {
 
     @GetMapping(value = "/available")
     @ResponseStatus(HttpStatus.OK)
-    public List<Product> productListByAvailable() {
-        return productService.productListByAvailable();
+    public List<Product> findAllByAvailable() {
+        return productService.findAllByAvailable();
     }
 
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/name/{name}")
-    public List<Product> productListByName(@PathVariable String name){
-        return productService.productListByName(name);
+    public List<Product> findAllByName(@PathVariable String name){
+        return productService.findAllByName(name);
     }
 
     @GetMapping(value = "/manufacturer/{manufacturer}")
     @ResponseStatus(HttpStatus.OK)
-    public List<Product> productListByManufacturer(@PathVariable String manufacturer){
-        return productService.productListByManufacturer(manufacturer);
+    public List<Product> findAllByManufacturer(@PathVariable String manufacturer){
+        return productService.findAllByManufacturer(manufacturer);
     }
 }

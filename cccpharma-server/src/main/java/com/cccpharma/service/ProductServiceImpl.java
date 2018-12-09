@@ -30,24 +30,16 @@ public class ProductServiceImpl implements ProductService {
         return productsResult;
     }
 
-    public List<Product> productListByName(String name){
+    public List<Product> findAllByName(String name){
 
         if(isNull(name)){
             throw new RuntimeException("Product not found!");
         }
 
-        Iterable<Product> products = productRepository.findAll();
-        List<Product> productsResult = new ArrayList<>();
-
-        for(Product product : products){
-            if(product.getName().equalsIgnoreCase(name)) {
-                productsResult.add(product);
-            }
-        }
-        return productsResult;
+        return productRepository.findAllByName(name);
     }
 
-    public List<Product> productListByAvailable(){
+    public List<Product> findAllByAvailable(){
 
         Iterable<Product> products = productRepository.findAll();
         List<Product> productsResult = new ArrayList<>();
@@ -60,20 +52,13 @@ public class ProductServiceImpl implements ProductService {
         return productsResult;
     }
 
-    public List<Product> productListByManufacturer(String manufacturer){
+    public List<Product> findAllByManufacturer(String manufacturer){
 
         if(isNull(manufacturer)){
             throw new RuntimeException("Product not a found!");
         }
-        Iterable<Product> products = productRepository.findAll();
-        List<Product> productsResult = new ArrayList<>();
 
-        for(Product product : products){
-            if(product.getManufacturer().equals(manufacturer)) {
-                productsResult.add(product);
-            }
-        }
-        return productsResult;
+        return productRepository.findAllByManufacturer(manufacturer);
     }
 
     public Product findById(String id) {
