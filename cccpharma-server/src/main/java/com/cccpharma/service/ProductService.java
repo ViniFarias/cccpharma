@@ -10,5 +10,9 @@ public interface ProductService {
     Product save(Product product);
     void deleteById(String id);
     List<Product> findAll();
-//    Product update(Product product);
+    List<Product> productListByName(String name);
+    List<Product> productListByAvailable();
+    List<Product> productListByManufacturer(String manufactorer);
+    double productPrice(String id);
+    boolean existsById(String id);
 }

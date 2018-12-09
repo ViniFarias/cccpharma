@@ -30,6 +30,52 @@ public class ProductServiceImpl implements ProductService {
         return productsResult;
     }
 
+    public List<Product> productListByName(String name){
+
+        if(isNull(name)){
+            throw new RuntimeException("Product not found!");
+        }
+
+        Iterable<Product> products = productRepository.findAll();
+        List<Product> productsResult = new ArrayList<>();
+
+        for(Product product : products){
+            if(product.getName().equalsIgnoreCase(name)) {
+                productsResult.add(product);
+            }
+        }
+        return productsResult;
+    }
+
+    public List<Product> productListByAvailable(){
+
+        Iterable<Product> products = productRepository.findAll();
+        List<Product> productsResult = new ArrayList<>();
+
+        for(Product product : products){
+            if(product.isAvailable()) {
+                productsResult.add(product);
+            }
+        }
+        return productsResult;
+    }
+
+    public List<Product> productListByManufacturer(String manufacturer){
+
+        if(isNull(manufacturer)){
+            throw new RuntimeException("Product not a found!");
+        }
+        Iterable<Product> products = productRepository.findAll();
+        List<Product> productsResult = new ArrayList<>();
+
+        for(Product product : products){
+            if(product.getManufacturer().equals(manufacturer)) {
+                productsResult.add(product);
+            }
+        }
+        return productsResult;
+    }
+
     public Product findById(String id) {
 
         if(isNull(id)) {
@@ -51,5 +97,19 @@ public class ProductServiceImpl implements ProductService {
 
     public boolean existsById(String id) {
         return productRepository.existsById(id);
+    }
+
+    public double productPrice(String id) {
+        this.exception(id);
+        return productRepository.findById(id).get().getPrice();
+    }
+
+    private void exception(String id){
+        if (isNull(id)) {
+            throw new NullPointerException("Product id is null!");
+        }
+        if (!productRepository.existsById(id)) {
+            throw new RuntimeException("Product not found!");
+        }
     }
 }
