@@ -43,7 +43,7 @@ export class ListProductsComponent implements OnInit {
   inicializationForm() {
     this.productForm = this.formBuilder.group({
       name: [null, [Validators.required]],
-      password: [null, [Validators.required]],
+      barcode: [null, [Validators.required]],
       manufacturer: [null, [Validators.required]],
       category: [null, [Validators.required]],
       price: [null, [Validators.required]],
@@ -166,6 +166,7 @@ export class ListProductsComponent implements OnInit {
     const body = this.productForm.getRawValue();
     body.category = { 'id': body.category};
     this.productService.registerProduct(body);
+    this.getAllProducts();
   }
 
 
