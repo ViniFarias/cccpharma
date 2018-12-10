@@ -38,4 +38,27 @@ public class ProductRestService {
     public void deleteById(@RequestBody Product product) {
          productService.deleteById(product.getBarcode());
     }
+
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "/{id}/price", method = RequestMethod.GET)
+    public Double productPrice(@PathVariable String id) { return productService.productPrice(id); }
+
+    @GetMapping(value = "/available")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Product> findAllByAvailable() {
+        return productService.findAllByAvailable();
+    }
+
+
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "/name/{name}")
+    public List<Product> findAllByName(@PathVariable String name){
+        return productService.findAllByName(name);
+    }
+
+    @GetMapping(value = "/manufacturer/{manufacturer}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Product> findAllByManufacturer(@PathVariable String manufacturer){
+        return productService.findAllByManufacturer(manufacturer);
+    }
 }
