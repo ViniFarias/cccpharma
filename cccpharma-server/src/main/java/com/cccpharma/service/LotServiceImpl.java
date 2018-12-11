@@ -67,14 +67,6 @@ public class LotServiceImpl implements LotService {
         return lotRepository.findValidLotsByProductId(productId);
     }
 
-    public List<Lot> findInvalidLotsByProductId(String productId) {
-        if(isNull(productId)) {
-            throw new NullPointerException("Product id is null!");
-        }
-
-        return lotRepository.findInvalidLotsByProductId(productId);
-    }
-
     public List<Lot> findLotsByProductIdAndExpirationDateGreaterThan(String productId, Date date) {
         if(isNull(productId)) {
             throw new NullPointerException("Product id is null!");
@@ -85,8 +77,6 @@ public class LotServiceImpl implements LotService {
 
         return lotRepository.findLotsByProductIdAndExpirationDateGreaterThan(productId, date);
     }
-
-
 
     public Lot save(Lot lot) {
 
