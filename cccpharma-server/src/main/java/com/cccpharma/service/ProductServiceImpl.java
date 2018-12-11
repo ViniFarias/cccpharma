@@ -89,6 +89,11 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findById(id).get().getPrice();
     }
 
+    public boolean disponibilidade(String id){
+        return productRepository.findById(id).get().isAvailable();
+    }
+
+
     private void exception(String id){
         if (isNull(id)) {
             throw new NullPointerException("Product id is null!");

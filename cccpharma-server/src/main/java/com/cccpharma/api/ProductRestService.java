@@ -61,4 +61,10 @@ public class ProductRestService {
     public List<Product> findAllByManufacturer(@PathVariable String manufacturer){
         return productService.findAllByManufacturer(manufacturer);
     }
+
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "{id}/exists")
+    public boolean existsById(@PathVariable String id){
+        return productService.existsById(id);
+    }
 }

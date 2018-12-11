@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.validation.constraints.Null;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -67,6 +65,14 @@ public class LotServiceImpl implements LotService {
         }
 
         return lotRepository.findValidLotsByProductId(productId);
+    }
+
+    public List<Lot> findInvalidLotsByProductId(String productId) {
+        if(isNull(productId)) {
+            throw new NullPointerException("Product id is null!");
+        }
+
+        return lotRepository.findInvalidLotsByProductId(productId);
     }
 
     public List<Lot> findLotsByProductIdAndExpirationDateGreaterThan(String productId, Date date) {
