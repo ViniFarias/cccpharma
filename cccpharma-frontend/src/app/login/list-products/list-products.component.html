@@ -1,27 +1,16 @@
 <ul id="options">
-  <li id = "selectAll" (mouseover) = "displayName('selectAll')" (click)="selectOption('selectAll')"><a [ngClass]="{'not-ative': !selectAllColor, 'ative': selectAllColor}" class="btn-floating btn-large option"><i class="material-icons">select_all</i></a>
+  <li (mouseover) = "displayName('selectAll')" (click)="selectOption('selectAll')"><a id = "selectAll" [ngClass]="{'not-ative': !selectAllColor, 'ative': selectAllColor}" data-position="bottom" data-tooltip="Selecionar todos" class="btn-floating btn-large option"><i class="material-icons">select_all</i></a>
   </li>
-  <li id = "foodColor" (mouseover) = "displayName('foodColor')" (click)="selectOption('foodColor')"><a [ngClass]="{'not-ative': !foodColor, 'ative': foodColor}" class="btn-floating btn-large option"><i class="material-icons">local_pizza</i></a>
+  <li (mouseover) = "displayName('foodColor')" (click)="selectOption('foodColor')"><a id = "foodColor" [ngClass]="{'not-ative': !foodColor, 'ative': foodColor}" data-position="bottom" data-tooltip="Alimentos" class="btn-floating btn-large option"><i class="material-icons">local_pizza</i></a>
   </li>
-  <li id = "comesticColor" (mouseover) = "displayName('comesticColor')" (click)="selectOption('comesticColor')"><a [ngClass]="{'not-ative': !comesticColor, 'ative': comesticColor}" class="btn-floating btn-large option"><i class="material-icons">brush</i></a>
+  <li (mouseover) = "displayName('comesticColor')" (click)="selectOption('comesticColor')"><a id = "comesticColor"  [ngClass]="{'not-ative': !comesticColor, 'ative': comesticColor}" data-position="bottom" data-tooltip="Cosméticos" class="btn-floating btn-large option"><i class="material-icons">brush</i></a>
   </li>
-  <li id = "medicinesColor" (mouseover) = "displayName('medicinesColor')" (click)="selectOption('medicinesColor')"><a [ngClass]="{'not-ative': !medicinesColor, 'ative': medicinesColor}" class="btn-floating btn-large option"><i class="material-icons">local_pharmacy</i></a>
+  <li (mouseover)="displayName('medicinesColor')" (click)="selectOption('medicinesColor')"><a  id = "medicinesColor" [ngClass]="{'not-ative': !medicinesColor, 'ative': medicinesColor}" data-position="bottom" data-tooltip="Medicamentos" class="btn-floating btn-large option"><i class="material-icons">local_pharmacy</i></a>
   </li>
-  <li id = "personalColor" (mouseover) = "displayName('personalColor')"  (click)="selectOption('personalColor')"><a [ngClass]="{'not-ative': !personalColor, 'ative': personalColor}" class="btn-floating btn-large option"><i class="material-icons">wc</i></a>
+  <li (mouseover)="displayName('personalColor')"  (click)="selectOption('personalColor')"><a id = "personalColor" [ngClass]="{'not-ative': !personalColor, 'ative': personalColor}" class="btn-floating btn-large option tool" data-position="bottom" data-tooltip="Higiene Pessoal"><i class="material-icons">wc</i></a>
   </li>
-  <li id = "openDropdow" (mouseover) = "displayName('openDropdow')" (click)="openDropdow()"><a data-target='dropdown1' class="dropdown-trigger btn-floating btn option"><i class="material-icons">filter_list</i></a>
+  <li (click)="openDropdow()"><a id = "openDropdow" data-target='dropdown1' class="dropdown-trigger btn-floating btn option"><i class="material-icons">filter_list</i></a>
   </li>
-</ul>
-
-<ul id = "optionsDesc">
-  <ul>
-    <li id="popupselectAll" style="display: none">Selecionar tudo</li>
-    <li id="popupfoodColor" style="display: none">Comida</li>
-    <li id="popupcomesticColor" style="display: none">Cosméticos</li>
-    <li id="popupmedicinesColor" style="display: none">Medicamentos</li>
-    <li id="popuppersonalColor" style="display: none">Higiene pessoal</li>
-    <li id="popupopenDropdow" style="display: none">Filtrar</li>
-  </ul>
 </ul>
 
 <div *ngIf="isAdmin()" class="container">

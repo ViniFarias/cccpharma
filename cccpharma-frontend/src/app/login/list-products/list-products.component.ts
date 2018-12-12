@@ -62,14 +62,22 @@ export class ListProductsComponent implements OnInit {
   }
 
   displayName(name: string) {
-    var e = document.getElementById('options');
-    e.onmouseover = function() {
-      document.getElementById('popup' + name).style.display = 'block';
-    }
-    e.onmouseout = function() {
-      document.getElementById('popup' + name).style.display = 'none';
-    }
+    $(document).ready(function () {
+      $('#' + name).tooltip();
+      $('#' + name).tooltip('open');
+    });
+
+    setTimeout(function(){
+      $(document).ready(function () {
+      $('#' + name).tooltip('close');
+    });
+    }, 500); 
   }
+
+  checkDiscount(item: any) {
+    return item.category.discount == 0;
+  }
+
 
   selectOption(name: string) {
     this.color(name);
@@ -134,7 +142,10 @@ export class ListProductsComponent implements OnInit {
 
   openDropdow() {
     $(document).ready(function(){
-      $('.dropdown-trigger').dropdown();
+      $('.dropdown-trigger').dropdown({
+        coverTrigger: false,
+        alignment: 'left'
+      });
       $('.dropdown-trigger').dropdown('open');
     });
   }

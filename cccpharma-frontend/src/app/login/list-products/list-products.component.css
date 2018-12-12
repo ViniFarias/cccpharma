@@ -148,12 +148,12 @@ form.a {
 }
 
 .collection-item {
-    height: 100px;
+    height: 150px;
 }
 
 .dropdown-content{
    width: max-content !important;
-   height:auto !important;
+   height:auto !important;   
 }
 
 
