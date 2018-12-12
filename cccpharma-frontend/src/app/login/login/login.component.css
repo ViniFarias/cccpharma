@@ -35,6 +35,21 @@ form.a {
 .card-panel {
     margin-top: 0%;
     width: 400px;
-    height: 400px;
+    height: 410px;
     border-radius: 20px;
+}
+
+#create {
+    float: right;
+    margin-right: 1%;
+}
+
+#create:hover {
+    text-decoration: underline;
+    color:red;
+}
+
+
+.modal {
+    width: 40%;
 }

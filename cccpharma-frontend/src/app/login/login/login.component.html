@@ -26,7 +26,40 @@
             <a (click)="login()" id="button-login"class="waves-effect waves-light btn-small center">LOGIN</a>
           </div>
         </form>
+        <p (click)="openModal()" id="create">criar conta</p>
+        
       </div>
     </div>
+  </div>
+</div>
+
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+  <div class="modal-content s12">
+
+    <h4>Criar conta</h4>
+    <form [formGroup]="registerForm" class="col">
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="name" type="text" class="validate" formControlName="username">
+          <label for="name">Username</label>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password" type="password" class="validate" formControlName="password">
+          <label for="password">Senha</label>
+        </div>
+
+      </div>
+    
+    </form>
+  </div>
+  <div class="modal-footer">
+    <a *ngIf="registerForm.valid" (click)="registerUser()" class="modal-close waves-effect waves-green btn-flat">Cadastrar</a>
   </div>
 </div>

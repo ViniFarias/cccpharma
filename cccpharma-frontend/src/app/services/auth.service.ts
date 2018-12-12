@@ -26,8 +26,6 @@ export class AuthService {
         'Content-Type':  'application/json'
       })
     };
-    console.log(this.url);
-
     const request = this.http.post(this.url, body, httpOptions);
 
     request.subscribe( res => {
@@ -42,9 +40,6 @@ export class AuthService {
       }
     });
 
-    // console.log(body);
-    // localStorage.setItem(this.TYPE, this.ADMIN);
-    // this.router.navigate(['/home']);
   }
 
   logout() {

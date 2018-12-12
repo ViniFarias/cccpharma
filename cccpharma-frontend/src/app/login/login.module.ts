@@ -5,8 +5,9 @@ import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login/login.component';
 import { ListProductsComponent } from './list-products/list-products.component';
 import { AuthService } from '../services/auth.service';
-import {ProductService} from '../services/product.service';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { ProductService } from '../services/product.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UsersService } from '../services/users.service';
 
 @NgModule({
   declarations: [LoginComponent, ListProductsComponent],
@@ -18,7 +19,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
   ],
   providers: [
     AuthService,
-    ProductService
+    ProductService,
+    UsersService
   ]
 })
 export class LoginModule { }
