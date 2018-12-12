@@ -167,3 +167,13 @@ form.a {
 #modal1 select {
   background: #fafafC;
 }
+
+
+#modal2 {
+    width: 300px;
+}
+
+.unavailable {
+    background: rgb(169,169,169);
+}
+

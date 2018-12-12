@@ -14,7 +14,7 @@
 </ul>
 
 <div *ngIf="isAdmin()" class="container">
-  <a (click)="openModal()" id="add_product" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
+  <a (click)="openModal('#modal1')" id="add_product" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
 </div>
 
 <div class="grid">
@@ -22,10 +22,10 @@
   <div class="row box">
     <ul class="collection with-header">
         <li class="collection-header"><h4>{{ category }}</h4><br></li>
-        <li class="collection-item" *ngFor="let item of itens; let i = index">
+        <li [ngClass]="{'unavailable': !item.available}" (click)="isAdmin() && editProduct()" class="collection-item" *ngFor="let item of itens; let i = index">
           <div  id = "names">
               <strong>Nome: {{ item.name }} </strong><br>
-          </div>
+          </div> 
             <div *ngIf = "checkDiscount(item); else elseBlock">
                 <br><div id = "prices">
                 <strong>Preço:  {{ calculePrice(item) }} R$</strong> <br>
@@ -92,18 +92,35 @@
 
         <div class="input-field col s6">
           <input id="price" type="number" class="validate"  formControlName="price" step="0.01">
-          <label for="price">Price</label>
-        </div>
-
-
-        <div class="input-field col s6">
-          <input id="available" type="text" class="validate" formControlName="available">
-          <label for="available">Situacao</label>
+          <label for="price">Preço</label>
         </div>
       </div>
     </form>
   </div>
   <div class="modal-footer">
     <a *ngIf="productForm.valid" (click)="registerProduct()" href="#!" class="modal-close waves-effect waves-green btn-flat">Cadastrar</a>
+  </div>
+</div>
+
+
+
+<!-- Modal Structure -->
+<div id="modal2" class="modal">
+  <div class="modal-content">
+
+    <h4>Alterar Preço</h4>
+    <form class="col s12">
+
+      <div class="row">
+
+        <div class="input-field col s12">
+          <input id="price2" type="number" class="validate"  step="0.01">
+          <label for="price2">Preço</label>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <a (click)="savePriveProduct()" href="#!" class="modal-close waves-effect waves-green btn-flat">Salvar</a>
   </div>
 </div>

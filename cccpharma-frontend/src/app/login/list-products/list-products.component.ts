@@ -47,7 +47,6 @@ export class ListProductsComponent implements OnInit {
       manufacturer: [null, [Validators.required]],
       category: [null, [Validators.required]],
       price: [null, [Validators.required]],
-      available: [null],
     });
   }
 
@@ -160,15 +159,16 @@ export class ListProductsComponent implements OnInit {
   getAllProducts() {
     this.productService.getAllProject().subscribe( res => {
       this.products = res;
+      console.log(res);
     }, (err) => {
       console.log(err);
     });
   }
 
-  openModal() {
+  openModal(name: string) {
     $(document).ready(function() {
-      $('.modal').modal();
-      $('#modal1').modal('open');
+      $(name).modal();
+      $(name).modal('open');
     });
   }
 
@@ -183,5 +183,9 @@ export class ListProductsComponent implements OnInit {
 
   isAdmin() {
     return this.authSerive.isAdmin();
+  }
+
+  editProduct() {
+    this.openModal('#modal2');
   }
 }
