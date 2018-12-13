@@ -10,7 +10,9 @@ export class AuthService {
 
   TYPE = 'TYPE';
   ADMIN = 'ADMIN';
+  CLIENT = 'CLIENT';
   TOKEN = 'TOKEN'
+
   url: string;
 
   constructor(
@@ -29,15 +31,17 @@ export class AuthService {
     const request = this.http.post(this.url, body, httpOptions);
 
     request.subscribe( res => {
-      console.log(res);
-    }, (err) => {
-      console.log(err);
-      const token = err.error.text;
-      if ( token !== undefined) {
-        localStorage.setItem(this.TOKEN, token);
+      const token = res['accessToken'];
+      localStorage.setItem(this.TOKEN, token);
+      if (res['admin']) {
         localStorage.setItem(this.TYPE, this.ADMIN);
         this.router.navigate(['/home']);
+      } else {
+        localStorage.setItem(this.TYPE, this.CLIENT);
+        this.router.navigate(['/']);
       }
+    }, (err) => {
+      console.log(err);
     });
 
   }
