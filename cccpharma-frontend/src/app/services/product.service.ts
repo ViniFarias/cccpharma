@@ -23,7 +23,6 @@ export class ProductService {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
         'Access-Control-Allow-Origin': '*',
-        'Authorization': token
       })
     };
     console.log(this.url);

@@ -177,3 +177,25 @@ form.a {
     background: rgb(169,169,169);
 }
 
+.unavailable  {
+    background: none;
+}
+
+#add_product {
+    float: right; 
+    margin: 1em;
+}
+
+.collection-header {
+    display: grid; 
+    grid-template-columns: 1fr 1fr min-content;
+}
+
+#li-content {
+    width: 100%;
+    height: 100%;
+}
+
+#edit-button {
+    margin-top: 25%
+}
