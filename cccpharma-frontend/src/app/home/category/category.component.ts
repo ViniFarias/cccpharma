@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {CategoryService} from '../../services/category.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 declare const $;
+declare const M;
 
 @Component({
   selector: 'app-category',
@@ -66,6 +67,15 @@ export class CategoryComponent implements OnInit {
   }
 
   saveEdition() {
-
+    let category = Object.assign({}, this.categorySelected);
+    category.discount = this.discountForm.get('discount').value / 100;
+    this.categoryService.editCategory(category).subscribe(
+      res => {
+          this.categorySelected.discount = category.discount;
+          M.toast({html: 'Categoria atualizada com sucesso'});
+       }, err => {
+          console.log(err);
+          M.toast({html: 'Ocorreu algum erro'});
+    })
   }
 }

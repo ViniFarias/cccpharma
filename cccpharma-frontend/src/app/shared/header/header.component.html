@@ -2,7 +2,7 @@
   <div class="nav-wrapper container">
     <a href="" rel="preload" class="brand-logo left">CCC_PHARMA</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="">Produtos</a></li>
+      <li *ngIf="isAdmin"><a href="/home/categoria">Categoria</a></li>
       <li *ngIf="!isLogged"><a rel="preload" href="login">Login</a></li>
       <li *ngIf="isAdmin"><a rel="preload" href="home"> Home </a></li>
       <li *ngIf="isLogged">
