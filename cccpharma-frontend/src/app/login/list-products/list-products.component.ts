@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ProductService} from '../../services/product.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
-declare var $: any;
+declare const $;
 declare const M;
 
 @Component({
@@ -30,7 +30,7 @@ export class ListProductsComponent implements OnInit {
 
   constructor(private productService: ProductService,
               private formBuilder: FormBuilder,
-              private authSerive: AuthService) {
+              private authService: AuthService) {
     this.toAllColor(false);
     this.category = 'Nenhuma categoria selecionada';
     this.getAllProducts();
@@ -79,11 +79,11 @@ export class ListProductsComponent implements OnInit {
       $(document).ready(function () {
       $('#' + name).tooltip('close');
     });
-    }, 500); 
+    }, 500);
   }
 
   checkDiscount(item: any) {
-    return item.category.discount == 0;
+    return item.category.discount === 0;
   }
 
 
@@ -199,7 +199,7 @@ export class ListProductsComponent implements OnInit {
 
 
   isAdmin() {
-    return this.authSerive.isAdmin();
+    return this.authService.isAdmin();
   }
 
   editProduct(product: any) {

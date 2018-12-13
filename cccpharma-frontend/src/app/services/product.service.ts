@@ -18,7 +18,6 @@ export class ProductService {
   }
 
   getAllProject() {
-    const token = this.authService.getToken();
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
