@@ -3,6 +3,8 @@ import {ProductService} from '../../services/product.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
 declare var $: any;
+declare const M;
+
 @Component({
   selector: 'app-list-products',
   templateUrl: './list-products.component.html',
@@ -20,8 +22,10 @@ export class ListProductsComponent implements OnInit {
   itens: any;
   close: boolean;
 
+  productSeleted: any;
   products: any;
 
+  priceForm: FormGroup;
   productForm: FormGroup;
 
   constructor(private productService: ProductService,
@@ -48,6 +52,11 @@ export class ListProductsComponent implements OnInit {
       category: [null, [Validators.required]],
       price: [null, [Validators.required]],
     });
+
+    this.priceForm = this.formBuilder.group({
+      price: [null, [Validators.required]],
+    });
+
   }
 
   color(name: string) {
@@ -176,7 +185,15 @@ export class ListProductsComponent implements OnInit {
   registerProduct() {
     const body = this.productForm.getRawValue();
     body.category = { 'id': body.category};
-    this.productService.registerProduct(body);
+    this.productService.registerProduct(body).subscribe(
+      res => {
+        M.toast({html: 'Cadastro Realizado com sucesso'})
+        console.log(res);
+      }, err => {
+        M.toast({html: 'Um erro aconteceu ao tentar cadastrar um produto'})
+        console.log(err);
+      }
+    );
     this.getAllProducts();
   }
 
@@ -185,7 +202,26 @@ export class ListProductsComponent implements OnInit {
     return this.authSerive.isAdmin();
   }
 
-  editProduct() {
+  editProduct(product: any) {
+    this.productSeleted = product;
     this.openModal('#modal2');
   }
+
+  savePriceProduct() {
+     let product = Object.assign({}, this.productSeleted);
+     product.price = this.priceForm.get('price').value;
+     console.log(this.productSeleted);
+     this.productService.registerProduct(product).subscribe(
+      res => {
+        M.toast({html: 'Produdo Atualizado com sucesso'})
+        this.productSeleted.price = product.price;
+        console.log(res);
+      }, err => {
+        M.toast({html: 'Um erro aconteceu ao tentar atualizar um produto'})
+        console.log(err);
+      }
+    );
+
+  }
+
 }

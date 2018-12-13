@@ -48,14 +48,6 @@ export class ProductService {
 
     const request = this.http.post(this.url, body, httpOptions);
 
-    request.subscribe(
-      res => {
-        M.toast({html: 'Cadastro Realizado com sucesso'})
-        console.log(res);
-      }, err => {
-        M.toast({html: 'Um erro aconteceu ao tentar cadastrar um produto'})
-        console.log(err);
-      }
-    );
+    return request;
   }
 }
