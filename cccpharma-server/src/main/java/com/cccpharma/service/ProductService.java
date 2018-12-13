@@ -12,7 +12,7 @@ public interface ProductService {
     List<Product> findAll();
     List<Product> findAllByName(String name);
     List<Product> findAllByAvailable();
-    List<Product> findAllByManufacturer(String manufactorer);
-    double productPrice(String id);
+    List<Product> findAllByManufacturer(String manufacturer);
+    double getProductPriceById(String id);
     boolean existsById(String id);
 }

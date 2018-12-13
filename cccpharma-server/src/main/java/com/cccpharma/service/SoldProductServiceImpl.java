@@ -62,7 +62,7 @@ public class SoldProductServiceImpl implements SoldProductService {
         }
 
         int soldProductsQuantity = soldProduct.getProductsQuantity();
-        List<Lot> availableLots = lotService.findValidLotsByProductIdAndExpirationDateGreaterThan(soldProduct.getProduct().getBarcode(), soldProduct.getSale().getSaleDate());
+        List<Lot> availableLots = lotService.findAvailableLotsByProductIdAndExpirationDateGraterThan(soldProduct.getProduct().getBarcode(), soldProduct.getSale().getSaleDate());
         int index = 0;
 
         while(soldProductsQuantity != 0) {

@@ -19,11 +19,7 @@ INSERT INTO lot ( id, expiration_date, available_products_quantity,
 					products_quantity_total, product_id )
 	VALUES
     ( 1, "2018-12-12", 5, 10, "12345678"),
-    ( 2, "2018-12-11", 3, 10, "98765431");
-
-INSERT INTO lot ( id, expiration_date, available_products_quantity,
-					products_quantity_total, product_id )
-	VALUES
+    ( 2, "2018-12-11", 3, 10, "98765431"),
     ( 3, "2016-05-23", 20, 30, "12345678"),
     ( 4, "2017-03-19", 35, 40,"98765431"),
 	  ( 5, "2018-10-13", 12, 20, "12345678"),

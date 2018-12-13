@@ -41,14 +41,13 @@ public class ProductServiceImpl implements ProductService {
 
     public List<Product> findAllByAvailable(){
 
-        Iterable<Product> products = productRepository.findAll();
+        Iterable<Product> products = productRepository.findAllByAvailable(true);
         List<Product> productsResult = new ArrayList<>();
 
         for(Product product : products){
-            if(product.isAvailable()) {
-                productsResult.add(product);
-            }
+            productsResult.add(product);
         }
+
         return productsResult;
     }
 
@@ -84,15 +83,10 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.existsById(id);
     }
 
-    public double productPrice(String id) {
+    public double getProductPriceById(String id) {
         this.exception(id);
         return productRepository.findById(id).get().getPrice();
     }
-
-    public boolean disponibilidade(String id){
-        return productRepository.findById(id).get().isAvailable();
-    }
-
 
     private void exception(String id){
         if (isNull(id)) {
