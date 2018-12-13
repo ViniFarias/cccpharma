@@ -19,7 +19,6 @@ public class UserRestService {
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public User registration(@RequestBody User user) {
-        System.out.println("Heeey");
         User savedUser = userService.save(user);
 
         return savedUser;

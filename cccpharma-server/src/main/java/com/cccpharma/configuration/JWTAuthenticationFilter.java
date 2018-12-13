@@ -54,7 +54,13 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         updateAccessTokenByUsername(username, bearerToken);
 
-        response.getWriter().write(bearerToken);
+        UserService userService = BeanUtil.getBean(UserService.class);
+        User user = userService.findByUsername(username);
+
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonInString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(user);
+
+        response.getWriter().write(jsonInString);
         response.addHeader(HEADER_STRING, bearerToken);
     }
 
