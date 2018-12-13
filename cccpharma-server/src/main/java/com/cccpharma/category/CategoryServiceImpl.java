@@ -1,8 +1,5 @@
 package com.cccpharma.category;
 
-import com.cccpharma.category.Category;
-import com.cccpharma.category.CategoryRepository;
-import com.cccpharma.category.CategoryService;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

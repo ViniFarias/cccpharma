@@ -1,7 +1,5 @@
 package com.cccpharma.sale;
 
-import com.cccpharma.sale.Sale;
-import com.cccpharma.sale.SaleService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

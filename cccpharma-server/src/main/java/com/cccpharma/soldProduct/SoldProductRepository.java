@@ -1,6 +1,5 @@
 package com.cccpharma.soldProduct;
 
-import com.cccpharma.soldProduct.SoldProduct;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

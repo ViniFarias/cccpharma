@@ -1,11 +1,9 @@
 package com.cccpharma.lot;
 
-import com.cccpharma.lot.Lot;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
 import java.util.Date;
 import java.util.List;
 
@@ -27,16 +25,15 @@ public interface LotRepository extends CrudRepository<Lot, Long> {
                     "AND available_products_quantity > 0 " +
                     "AND product_id = :productId " +
             "ORDER BY expiration_date", nativeQuery = true)
-    List<Lot> findAvailableLotsByProductIdAndExpirationDateGraterThan(@Param("productId") String productId,
-                                                                  @Param("date") Date date);
+    List<Lot> findAvailableLotsByProductIdAndExpirationDateGraterThan(@Param("productId") String productId, @Param("date") Date date);
 
     @Query(value =
             "SELECT * " +
-                    "FROM lot " +
-                    "WHERE expiration_date > curdate() " +
-                    "AND available_products_quantity > 0 " +
-                    "AND product_id = :productId " +
-                    "ORDER BY expiration_date", nativeQuery = true)
+            "FROM lot " +
+            "WHERE expiration_date > curdate() " +
+                "AND available_products_quantity > 0 " +
+                "AND product_id = :productId " +
+            "ORDER BY expiration_date", nativeQuery = true)
     List<Lot> findAvailableLotsByProductId(@Param("productId") String productId);
 
     @Query(value =

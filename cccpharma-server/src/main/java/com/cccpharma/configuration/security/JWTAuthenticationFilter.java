@@ -64,8 +64,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         response.addHeader(HEADER_STRING, bearerToken);
     }
 
-    public User updateAccessTokenByUsername(String username, String token) {
+    private void updateAccessTokenByUsername(String username, String token) {
         UserService userService = BeanUtil.getBean(UserService.class);
-        return userService.updateAccessTokenByUsername(username, token);
+        userService.updateAccessTokenByUsername(username, token);
     }
 }

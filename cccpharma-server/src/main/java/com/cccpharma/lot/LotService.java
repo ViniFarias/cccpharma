@@ -1,8 +1,5 @@
 package com.cccpharma.lot;
 
-
-import com.cccpharma.lot.Lot;
-
 import java.util.Date;
 import java.util.List;
 

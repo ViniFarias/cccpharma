@@ -39,7 +39,7 @@ public class ProductRestService {
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/{id}/price", method = RequestMethod.GET)
-    public Double productPrice(@PathVariable String id) { return productService.getProductPriceById(id); }
+    public Double getProductPriceById(@PathVariable String id) { return productService.getProductPriceById(id); }
 
     @GetMapping(value = "/available")
     @ResponseStatus(HttpStatus.OK)

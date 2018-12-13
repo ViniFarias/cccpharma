@@ -1,6 +1,5 @@
 package com.cccpharma.category;
 
-import com.cccpharma.category.Category;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

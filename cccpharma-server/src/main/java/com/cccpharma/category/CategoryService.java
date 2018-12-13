@@ -1,7 +1,5 @@
 package com.cccpharma.category;
 
-import com.cccpharma.category.Category;
-
 import java.util.List;
 
 public interface CategoryService {
