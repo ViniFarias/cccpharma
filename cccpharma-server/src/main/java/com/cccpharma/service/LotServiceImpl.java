@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.validation.constraints.Null;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -79,8 +77,6 @@ public class LotServiceImpl implements LotService {
 
         return lotRepository.findLotsByProductIdAndExpirationDateGreaterThan(productId, date);
     }
-
-
 
     public Lot save(Lot lot) {
 

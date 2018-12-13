@@ -6,6 +6,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -32,4 +33,5 @@ public class Product {
     @JoinColumn(name = "category_id")
     @NotNull
     private Category category;
+
 }
