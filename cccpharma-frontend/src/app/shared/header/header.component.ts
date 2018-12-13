@@ -24,6 +24,12 @@ export class HeaderComponent implements OnInit {
           this.isLogged = false;
           this.local = 'Descrição';
         }
+
+        if(this.authService.isAdmin()) {
+          this.isAdmin = true;
+        } else {
+          this.isAdmin = false;
+        }
       });
    }
 

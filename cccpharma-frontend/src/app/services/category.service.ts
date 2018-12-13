@@ -1,38 +1,22 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '../../../node_modules/@angular/common/http';
 import {AuthService} from './auth.service';
-
-declare const M;
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
+export class CategoryService {
 
   url: string;
 
   constructor(private http: HttpClient,
               private authService: AuthService) {
-    this.url = environment.API + '/products';
+
+    this.url = environment.API + '/categories';
   }
 
-  getAllProject() {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Access-Control-Allow-Origin': '*',
-      })
-    };
-    console.log(this.url);
-
-    const request = this.http.get(this.url, httpOptions);
-
-    return request;
-
-  }
-
-  registerProduct(body: any) {
+  getCategories() {
     const token = this.authService.getToken();
     const httpOptions = {
       headers: new HttpHeaders({
@@ -41,11 +25,21 @@ export class ProductService {
         'Authorization': token
       })
     };
+    const request = this.http.get(this.url, httpOptions);
 
-    console.log(body);
-    console.log(httpOptions);
+    return request;
+  }
 
-    const request = this.http.post(this.url, body, httpOptions);
+  editCategory(category: any) {
+    const token = this.authService.getToken();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': token
+      })
+    };
+    const request = this.http.post(this.url, category, httpOptions);
 
     return request;
   }
