@@ -25,11 +25,12 @@ export class AuthService {
   login(body: any) {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json'
+        'Content-Type':  'application/json',
+        'Access-Control-Allow-Origin': '*'
       })
     };
     const request = this.http.post(this.url, body, httpOptions);
-
+    console.log(this.url);
     request.subscribe( res => {
       const token = res['accessToken'];
       localStorage.setItem(this.TOKEN, token);
