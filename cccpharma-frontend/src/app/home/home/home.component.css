@@ -1,0 +1,119 @@
+body{ 
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 2em, 1fr, 1fr, 1fr;
+    background-color: rgb(241, 241, 241);
+}
+h1{
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    margin-top: 0%;
+    width: 1293px;
+    border-radius: 20px;
+    box-shadow: -1px -1px 3px #b4b4b4;
+    -webkit-box-shadow: -1px -1px 3px #b4b4b4;
+    -moz-box-shadow: -1px -1px 3px  #b4b4b4;
+    
+}
+
+#estoque {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    text-align: center;
+    margin-top: 0%;
+    width: 425px;
+    border-radius: 20px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    box-shadow: -1px -1px 3px #b4b4b4;
+    -webkit-box-shadow: -1px -1px 3px #b4b4b4;
+    -moz-box-shadow: -1px -1px 3px  #b4b4b4;
+    
+}
+
+#vendas {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    text-align: center;
+    margin-top: 0%;
+    width: 425px;
+    border-radius: 20px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    border: #000 1px;
+    box-shadow: -1px -1px 3px #b4b4b4;
+    -webkit-box-shadow: -1px -1px 3px #b4b4b4;
+    -moz-box-shadow: -1px -1px 3px  #b4b4b4;
+
+}
+
+#receita {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    text-align: center;
+    margin-top: 0%;
+    width: 425px;
+    border-radius: 20px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    box-shadow: -1px -1px 3px #b4b4b4;
+    -webkit-box-shadow: -1px -1px 3px #b4b4b4;
+    -moz-box-shadow: -1px -1px 3px  #b4b4b4;
+    
+}
+
+li {
+    margin: 30px;
+    justify-content: center;
+}
+
+p {  
+    margin: 40px;
+    
+}
+
+section {
+    border: black;
+    margin-top: 0%;
+    width: 423px;
+    height: max-content;
+    border-radius: 20px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    box-shadow: -1px -1px 3px #b4b4b4;
+    -webkit-box-shadow: -1px -1px 3px #b4b4b4;
+    -moz-box-shadow: -1px -1px 3px  #b4b4b4;
+    
+    
+}
+
+section.produtos{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 6;
+}
+
+section.reg{
+   grid-column-start: 2;
+   grid-column-end: 3;
+   grid-row-start: 3;
+   grid-row-end: 6;
+}
+
+section.rec{
+   grid-column-start: 3;
+   grid-column-end: 4;
+   grid-row-start: 3;
+   grid-row-end: 6;
+}
