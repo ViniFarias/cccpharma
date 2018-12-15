@@ -10,17 +10,35 @@ import java.util.ArrayList;
 import java.util.List;
 import static java.util.Objects.isNull;
 
+/**
+ * The {@code SaleServiceImpl} class implements the {@code SaleService} methods with the business rule.
+ *
+ * @author Marcus Vinicius
+ * @author Jardely Santos
+ * @see SaleService
+ */
 @Service
 @NoArgsConstructor
 @AllArgsConstructor
 public class SaleServiceImpl implements SaleService {
 
+    /**
+     * The interface for operations on the sale repository.
+     */
     @Autowired
     private SaleRepository saleRepository;
 
+    /**
+     * The sold products operations service.
+     */
     @Autowired
     private SoldProductService soldProductService;
 
+    /**
+     * Returns all instances of sales.
+     *
+     * @return all sales
+     */
     public List<Sale> findAll() {
 
         Iterable<Sale> sales = saleRepository.findAll();
@@ -33,6 +51,14 @@ public class SaleServiceImpl implements SaleService {
         return salesResult;
     }
 
+    /**
+     * Retrieves an sale by its id.
+     *
+     * @param id must not be {@literal null}
+     * @return the entity with the given id or {@literal null} if none found
+     * @throws NullPointerException in case the given id is null
+     * @throws RuntimeException in case the sale is not found
+     */
     public Sale findById(Long id) {
 
         if(isNull(id)) {
@@ -45,6 +71,14 @@ public class SaleServiceImpl implements SaleService {
         return saleRepository.findById(id).get();
     }
 
+    /**
+     * Saves a given sale.
+     * Saves the sold products in the sale.
+     *
+     * @param sale must not be {@literal null}
+     * @return the saved sale, it will never be {@literal null}
+     * @throws NullPointerException in case the given sale or its attributes are null
+     */
     public Sale save(Sale sale) {
 
         if(isNull(sale.getSoldProducts())) {
@@ -67,6 +101,14 @@ public class SaleServiceImpl implements SaleService {
         return saleSaved;
     }
 
+    /**
+     * Deletes a sale by its id.
+     * Deletes the sold products in the sale.
+     *
+     * @param id must not be {@literal null}
+     * @throws NullPointerException in case the given id is null
+     * @throws RuntimeException in case the sale is not found
+     */
     public void deleteById(Long id) {
 
         if(isNull(id)) {

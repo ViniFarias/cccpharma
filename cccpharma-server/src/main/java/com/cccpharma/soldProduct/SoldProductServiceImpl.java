@@ -10,17 +10,35 @@ import java.util.ArrayList;
 import java.util.List;
 import static java.util.Objects.isNull;
 
+/**
+ * The {@code SoldProductServiceImpl} class implements the {@code SoldProduct} methods with the business rule.
+ *
+ * @author Marcus Vinicius
+ * @author Jardely Santos
+ * @see SoldProduct
+ */
 @Service
 @NoArgsConstructor
 @AllArgsConstructor
 public class SoldProductServiceImpl implements SoldProductService {
 
+    /**
+     * The interface for operations on the sold product repository.
+     */
     @Autowired
     private SoldProductRepository soldProductRepository;
 
+    /**
+     * The lot operations service.
+     */
     @Autowired
     private LotService lotService;
 
+    /**
+     * Returns all instances of sold products.
+     *
+     * @return all sold products
+     */
     public List<SoldProduct> findAll() {
 
         Iterable<SoldProduct> soldProducts = soldProductRepository.findAll();
@@ -33,6 +51,13 @@ public class SoldProductServiceImpl implements SoldProductService {
         return soldProductsResult;
     }
 
+    /**
+     * Retrieves an sold product by its id.
+     *
+     * @param id must not be {@literal null}
+     * @return the entity with the given id or {@literal null} if none found
+     * @throws NullPointerException in case the given id is null.
+     */
     public SoldProduct findById(Long id) {
 
         if(isNull(id)) {
@@ -45,6 +70,14 @@ public class SoldProductServiceImpl implements SoldProductService {
         return soldProductRepository.findById(id).get();
     }
 
+    /**
+     * Saves a given sold product.
+     * Decreases the quantity of product sold from the corresponding lots.
+     *
+     * @param soldProduct must not be {@literal null}
+     * @return the saved sold product, it will never be {@literal null}
+     * @throws NullPointerException in case the given sold product or its attributes are null.
+     */
     public SoldProduct save(SoldProduct soldProduct) {
 
         if(isNull(soldProduct)) {
@@ -85,6 +118,14 @@ public class SoldProductServiceImpl implements SoldProductService {
         return soldProductRepository.save(soldProduct);
     }
 
+    /**
+     * Deletes a sold product by its id.
+     * Increases the quantity of product sold from the corresponding lots.
+     *
+     * @param id must not be {@literal null}
+     * @throws NullPointerException in case the given id is null.
+     * @throws RuntimeException in case the sold product is not found.
+     */
     public void deleteById(Long id) {
 
         if(isNull(id)) {
