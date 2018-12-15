@@ -19,6 +19,12 @@ import java.io.IOException;
 import java.util.Date;
 import static com.cccpharma.configuration.security.SecurityConstants.*;
 
+/**
+ * The {@code JWTAuthenticationFilter} class is responsible for managing user authentication.
+ *
+ * @see UsernamePasswordAuthenticationFilter
+ * @author Marcus Vinicius
+ */
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private AuthenticationManager authenticationManager;

@@ -10,6 +10,13 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 
+/**
+ * The {@code SecurityConfig} class configures system security.
+ * Configures which users have access to routes.
+ * Applies encryption to users' passwords when they are authenticated.
+ *
+ * @author Marcus Vinicius
+ */
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {

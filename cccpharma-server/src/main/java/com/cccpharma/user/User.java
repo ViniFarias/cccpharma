@@ -17,6 +17,7 @@ import javax.validation.constraints.NotNull;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "user_client")
 public class User {
 
     /**
@@ -54,7 +55,6 @@ public class User {
      * A Boolean value that indicates whether the user is an administrator or not.
      */
     @NotNull
-    @NotEmpty
     private boolean admin;
 
     /**

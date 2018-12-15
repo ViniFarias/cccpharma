@@ -12,14 +12,18 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The {@code CustomUserDetailService} class is responsible for configuring users
+ * with the security details they must have.
+ *
+ * @see UserDetailsService
+ * @author Marcus Vinicius
+ */
 @Component
 public class CustomUserDetailService implements UserDetailsService {
-    private final UserRepository userRepository;
 
     @Autowired
-    public CustomUserDetailService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    private UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

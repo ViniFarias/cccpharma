@@ -1,5 +1,10 @@
 package com.cccpharma.configuration.security;
 
+/**
+ * Stores the constants used by the security configuration classes.
+ *
+ * @author Marcus Vinicius
+ */
 public class SecurityConstants {
 
     static final String SECRET = "cccpharma";

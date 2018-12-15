@@ -5,6 +5,16 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
 
+/**
+ * Interface to be implemented by any object that wishes to be notified
+ * of the {@link ApplicationContext} that it runs in.
+ *
+ * This class is used when it is necessary to have a class annotated with {@code @Autowired}
+ * within a class not controlled by SpringBoot
+ *
+ * @see ApplicationContextAware
+ * @author Marcus Vinicius
+ */
 @Service
 public class BeanUtil implements ApplicationContextAware {
 

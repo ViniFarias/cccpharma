@@ -49,7 +49,7 @@ public class ProductServiceImpl implements ProductService {
      *
      * @param name must not be {@literal null}
      * @return the products with the given name or {@literal null} if none found
-     * @throws NullPointerException in case the given name is null.
+     * @throws NullPointerException in case the given name is null
      */
     public List<Product> findAllByName(String name){
 
@@ -82,7 +82,7 @@ public class ProductServiceImpl implements ProductService {
      *
      * @param manufacturer must not be {@literal null}
      * @return the products with the given manufacturer or {@literal null} if none found
-     * @throws NullPointerException in case the given manufacturer is null.
+     * @throws NullPointerException in case the given manufacturer is null
      */
     public List<Product> findAllByManufacturer(String manufacturer){
 
@@ -98,8 +98,8 @@ public class ProductServiceImpl implements ProductService {
      *
      * @param id must not be {@literal null}
      * @return the product with the given id or {@literal null} if none found
-     * @throws NullPointerException in case the given id is null.
-     * @throws RuntimeException in case the product is not found.
+     * @throws NullPointerException in case the given id is null
+     * @throws RuntimeException in case the product is not found
      */
     public Product findById(String id) {
 
@@ -135,7 +135,7 @@ public class ProductServiceImpl implements ProductService {
      * Returns if a product exists by its id.
      *
      * @param id must not be {@literal null}
-     * @return {@code true} if the product with given id exists ou {@code false} if not.
+     * @return {@code true} if the product with given id exists ou {@code false} if not
      */
     public boolean existsById(String id) {
         return productRepository.existsById(id);
@@ -146,8 +146,8 @@ public class ProductServiceImpl implements ProductService {
      *
      * @param id must not be {@literal null}
      * @return the price of the product with the given id or {@literal null} if none found
-     * @throws NullPointerException in case the given id is null.
-     * @throws RuntimeException in case the product is not found.
+     * @throws NullPointerException in case the given id is null
+     * @throws RuntimeException in case the product is not found
      */
     public double getProductPriceById(String id) {
         if (isNull(id)) {
@@ -159,4 +159,20 @@ public class ProductServiceImpl implements ProductService {
 
         return productRepository.findById(id).get().getPrice();
     }
+
+    /**
+     * Retrieves the instances of products that contains the given text in the name.
+     *
+     * @param text must not be {@literal null}
+     * @return the products that contains the given text in the name or {@literal null} if none found
+     * @throws NullPointerException in case the given text is null
+     */
+    public List<Product> findAllByNameContains(String text) {
+        if (isNull(text)) {
+            throw new NullPointerException("Text is null!");
+        }
+
+        return productRepository.findAllByNameContains(text);
+    }
+
 }
