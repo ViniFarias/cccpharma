@@ -1,0 +1,116 @@
+package com.cccpharma.lot;
+
+import com.cccpharma.product.ProductServiceImpl;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import static java.util.Objects.isNull;
+
+@Service
+@AllArgsConstructor
+@NoArgsConstructor
+public class LotServiceImpl implements LotService {
+
+    @Autowired
+    private LotRepository lotRepository;
+
+    @Autowired
+    private ProductServiceImpl productServiceImpl;
+
+    public List<Lot> findAll() {
+
+        Iterable<Lot> lots = lotRepository.findAll();
+        List<Lot> lotsResult = new ArrayList<>();
+
+        for(Lot lot : lots) {
+            lotsResult.add(lot);
+        }
+
+        return lotsResult;
+    }
+
+    public Lot findById(Long id) {
+
+        if(isNull(id)) {
+            throw new NullPointerException("Lot id is null!");
+        }
+        if(!lotRepository.existsById(id)) {
+            throw new RuntimeException("Lot not found!");
+        }
+
+        return lotRepository.findById(id).get();
+    }
+
+    public List<Lot> findAvailableLotsByProductId(String productId) {
+        if(isNull(productId)) {
+            throw new NullPointerException("Product id is null!");
+        }
+
+        return lotRepository.findAvailableLotsByProductId(productId);
+    }
+
+    public List<Lot> findAvailableLotsByProductIdAndExpirationDateGraterThan(String productId, Date date) {
+        if(isNull(productId)) {
+            throw new NullPointerException("Product id is null!");
+        }
+        if(isNull(date)) {
+            throw new NullPointerException("Date id is null!");
+        }
+
+        return lotRepository.findAvailableLotsByProductIdAndExpirationDateGraterThan(productId, date);
+    }
+
+    public List<Lot> findValidLotsByProductId(String productId) {
+        if(isNull(productId)) {
+            throw new NullPointerException("Product id is null!");
+        }
+
+        return lotRepository.findValidLotsByProductId(productId);
+    }
+
+    public List<Lot> findLotsByProductIdAndExpirationDateGreaterThan(String productId, Date date) {
+        if(isNull(productId)) {
+            throw new NullPointerException("Product id is null!");
+        }
+        if(isNull(date)) {
+            throw new NullPointerException("Date is null!");
+        }
+
+        return lotRepository.findLotsByProductIdAndExpirationDateGreaterThan(productId, date);
+    }
+
+    public Lot save(Lot lot) {
+
+        if(isNull(lot.getExpirationDate())) {
+            throw new NullPointerException("Expiration date is null!");
+        }
+        if(isNull(lot.getProductsQuantityTotal())) {
+            throw new NullPointerException("Products quantity is null!");
+        }
+        if(isNull(lot.getProduct())) {
+            throw new NullPointerException("Product is null!");
+        }
+
+        if(!productServiceImpl.existsById(lot.getProduct().getBarcode())) {
+            throw new RuntimeException("Product not found!");
+        }
+
+        return lotRepository.save(lot);
+    }
+
+    public void deleteById(Long id) {
+
+        if(isNull(id)) {
+            throw new NullPointerException("Lot id is null!");
+        }
+        if(!lotRepository.existsById(id)) {
+            throw new RuntimeException("Lot not found!");
+        }
+
+        lotRepository.deleteById(id);
+    }
+}
