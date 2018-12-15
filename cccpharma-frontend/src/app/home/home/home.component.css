@@ -20,7 +20,7 @@ h1{
     
 }
 
-.lotes {
+.estoque {
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: 4;
@@ -29,7 +29,6 @@ h1{
     text-indent: 10%;
     margin-top: 0%;
 
-    height: fit-content;
     border-radius: 20px;
     background-color: rgb(255, 255, 255);
     box-shadow: -1px -1px 3px #b4b4b4;
@@ -86,7 +85,7 @@ h1{
     text-align: justify;
     text-indent: 10%;
 }
-.estoque{
+.lotes {
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: 2;
@@ -95,7 +94,6 @@ h1{
     text-indent: 10%;
     background-color: rgb(255, 255, 255);
     margin-top: 0%;
-    height: fit-content;
     border-radius: 20px;
     box-shadow: -1px -1px 3px #b4b4b4;
     -webkit-box-shadow: -1px -1px 3px #b4b4b4;
