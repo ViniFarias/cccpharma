@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API: 'http://www.localhost:8080'
+  API: 'https://cccpharma-server02.herokuapp.com'
 };
 
 /*
