@@ -63,7 +63,7 @@ h1{
     text-indent: 10%;
 }
 
-.receita {
+.pfalta {
     grid-column-start: 3;
     grid-column-end: 4;
     grid-row-start: 6;
@@ -104,7 +104,7 @@ h1{
     text-align: justify;
     text-indent: 5%;
 }
-.pfalta{
+.receita{
     grid-column-start: 3;
     grid-column-end: 4;
     grid-row-start: 2;
