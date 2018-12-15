@@ -79,4 +79,12 @@ public interface ProductService {
      * @return {@code true} if the product with given id exists ou {@code false} if not.
      */
     boolean existsById(String id);
+
+    /**
+     * Retrieves the instances of products that contains the given text in the name.
+     *
+     * @param text must not be {@literal null}
+     * @return the products with the given name or {@literal null} if none found
+     */
+    List<Product> findAllByNameContains(String text);
 }

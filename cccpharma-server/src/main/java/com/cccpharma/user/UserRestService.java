@@ -2,10 +2,7 @@ package com.cccpharma.user;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * The {@Code UserRestService} class is the web controller for user operations.
@@ -33,7 +30,7 @@ public class UserRestService {
      * @param user must not be {@literal null}
      * @return the saved user, it will never be {@literal null}
      */
-    @RequestMapping(value = "/registration", method = RequestMethod.POST)
+    @PostMapping(value = "/registration")
     public User registration(@RequestBody User user) {
         User savedUser = userService.save(user);
 

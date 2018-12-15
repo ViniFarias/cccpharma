@@ -43,8 +43,8 @@ public class ProductRestService {
      * @param id must not be {@literal null}
      * @return the product with the given id or {@literal null} if none found
      */
+    @GetMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Product findById(@PathVariable  String id) {
         return productService.findById(id);
     }
@@ -58,8 +58,8 @@ public class ProductRestService {
      * @param product must not be {@literal null}
      * @return the saved product, it will never be {@literal null}
      */
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(method = RequestMethod.POST)
     public Product save(@RequestBody Product product) {
         return productService.save(product);
     }
@@ -85,8 +85,8 @@ public class ProductRestService {
      * @param id must not be {@literal null}
      * @return the price of the product with the given id or {@literal null} if none found
      */
+    @GetMapping(value = "/{id}/price")
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value = "/{id}/price", method = RequestMethod.GET)
     public Double getProductPriceById(@PathVariable String id) { return productService.getProductPriceById(id); }
 
     /**
@@ -109,8 +109,8 @@ public class ProductRestService {
      * @param name must not be {@literal null}
      * @return the products with the given name or {@literal null} if none found
      */
+    @GetMapping(value = "/name/{name}")
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value = "/name/{name}")
     public List<Product> findByName(@PathVariable String name){
         return productService.findAllByName(name);
     }
@@ -136,9 +136,23 @@ public class ProductRestService {
      * @param id must not be {@literal null}
      * @return {@code true} if the product with given id exists ou {@code false} if not.
      */
+    @GetMapping(value = "/{id}/exists")
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value = "/{id}/exists")
     public boolean existsById(@PathVariable String id){
         return productService.existsById(id);
+    }
+
+    /**
+     * Retrieves the instances of products that contains the given text in the name.
+     * It can be accessed by a GET request to the {@code '/products/name/contains/{text}'} endpoint
+     * passing the product name.
+     *
+     * @param text must not be {@literal null}
+     * @return the products that contains the given text in the name or {@literal null} if none found
+     */
+    @GetMapping(value = "/name/contains/{text}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Product> findAllByNameContains(@PathVariable String text){
+        return productService.findAllByNameContains(text);
     }
 }

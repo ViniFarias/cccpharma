@@ -37,4 +37,6 @@ public interface ProductRepository extends CrudRepository<Product, String> {
      * @return the products with the given availability or {@literal null} if none found
      */
     List<Product> findAllByAvailable(boolean available);
+
+    List<Product> findAllByNameContains(String name);
 }

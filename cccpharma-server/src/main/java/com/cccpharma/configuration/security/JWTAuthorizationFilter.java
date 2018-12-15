@@ -13,6 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import static com.cccpharma.configuration.security.SecurityConstants.*;
 
+/**
+ * The {@code JWTAuthorizationFilter} class is responsible for managing the authorizations that users have.
+ *
+ * @see BasicAuthenticationFilter
+ * @author Marcus Vinicius
+ */
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
     private final CustomUserDetailService customUserDetailService;
 
