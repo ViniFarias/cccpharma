@@ -1,0 +1,52 @@
+
+<div class="root">
+
+  <ul class="collection with-header">
+    <li class="collection-header">
+      <h4> Lotes </h4><br>
+      <a *ngIf="isAdmin()" (click)="openModal('#lotRegisterModal')" id="add_lot" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
+    </li>
+
+    <li class="collection-item" *ngFor="let item of lots; let i = index">
+      <div>
+        <p> Produto: {{ item.product.name}}</p>
+        <p> Número do lote: {{item.id}}</p>
+        <p> Quantidade disponível: {{item.availableProductsQuantity}}</p>
+        <p> Fabricante: {{item.product.manufacturer}}</p>
+
+      </div>
+    </li>
+
+  </ul>
+</div>
+
+<!-- Modal Structure -->
+<div id="lotRegisterModal" class="modal">
+  <div class="modal-content">
+
+    <h4>Cadastrar Lote</h4>
+    <form [formGroup]="lotForm" class="col s12 lotForm">
+      <h6>Selecione o produto: </h6>
+      <div class="input-field col s12">
+        <select class="browser-default" formControlName="product">
+          <option value="" disabled selected>Choose your option</option>
+          <option *ngFor="let item of products; let i = index" value={{item.barcode}}>{{item.name}}</option>
+        </select>
+      </div>
+
+      <div class="input-field col s6">
+        <input id="productsQuantityTotal" type="number" class="validate" formControlName="productsQuantityTotal">
+        <label for="productsQuantityTotal">Quantidade de produtos</label>
+      </div>
+
+      <div class="input-field col s6">
+        <input id="expirationDate" type="date" class="validate" formControlName="expirationDate">
+        <label for="expirationDate">Data de validade</label>
+      </div>
+
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button *ngIf="lotForm.valid" (click)="registerLot()" class="modal-close waves-effect waves-green btn-flat">Cadastrar</button>
+  </div>
+</div>
