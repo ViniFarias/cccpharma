@@ -5,11 +5,13 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home/home.component';
 import { CategoryComponent } from './category/category.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { SaleComponent } from './sale/sale.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    CategoryComponent
+    CategoryComponent,
+    SaleComponent
   ],
   imports: [
     CommonModule,
