@@ -132,7 +132,9 @@ export class SaleComponent implements OnInit {
     let sum = 0;
 
     for (let i = 0; i < this.productsInCart.length; i++) {
-      sum += this.productsInCart[i].product.price;
+      let item = this.productsInCart[i];
+      console.log(item);
+      sum += (item.product.price * (1 - item.product.category.discount) * item.productsQuantity);
     }
 
     return sum;

@@ -13,7 +13,7 @@ export class SaleService {
   constructor(private http: HttpClient,
               private authService: AuthService) {
 
-    this.url = environment.API + '/sale';
+    this.url = environment.API + '/sales';
   }
 
 
