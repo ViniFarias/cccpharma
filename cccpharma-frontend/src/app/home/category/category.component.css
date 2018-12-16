@@ -56,6 +56,16 @@ form.a {
   background-color: rgb(241, 241, 241);
 }
 
+#options li {
+  display:inline;
+  margin: 1em;
+}
+
+
+.option :hover {
+  background: #ee6e73;
+}
+
 .ative {
   background: #ee6e73;
 }
@@ -85,6 +95,9 @@ form.a {
   margin: 0px;
 }
 
+#dropdown1 li a {
+}
+
 #modal1 select {
   background: #fafafC;
 }
@@ -94,6 +107,18 @@ form.a {
   width: 400px;
 }
 
+.unavailable {
+  background: rgb(169,169,169);
+}
+
+.unavailable  {
+  background: none;
+}
+
+#add_product {
+  float: right;
+  margin: 1em;
+}
 
 .collection-header {
   display: grid;
@@ -112,9 +137,4 @@ form.a {
 p {
   margin-right: 10px;
   font-size: 20px;
-}
-
-#item {
-  display:grid;
-  flex-direction: row;
 }

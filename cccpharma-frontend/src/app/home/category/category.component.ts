@@ -20,7 +20,8 @@ export class CategoryComponent implements OnInit {
 
   constructor(private authService: AuthService,
               private categoryService: CategoryService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private router: Router) {
 
     this.getCategories();
     this.inicializationForm();
