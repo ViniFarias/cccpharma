@@ -30,4 +30,33 @@ export class SaleService {
     const request = this.http.post(this.url, body, httpOptions);
     return request;
   }
+
+
+  getSales() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': this.authService.getToken()
+      })
+    };
+    console.log(this.url);
+    const request = this.http.get(this.url, httpOptions);
+
+    return request;
+  }
+
+  cancelSale(id: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': this.authService.getToken()
+      })
+    };
+
+    const request = this.http.delete(this.url + id, httpOptions);
+
+    return request;
+  }
 }
