@@ -49,4 +49,22 @@ export class ProductService {
 
     return request;
   }
+
+  findProductByName(name: any) {
+    const token = this.authService.getToken();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': token
+      })
+    };
+    
+    const newURL = this.url + '/name/contains/' + name;
+    console.log(newURL)
+    const request = this.http.get(newURL, httpOptions);
+
+    return request;
+    
+  }
 }

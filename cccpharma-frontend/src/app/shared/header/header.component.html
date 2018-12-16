@@ -6,6 +6,7 @@
       <li *ngIf="isAdmin"><a href="/home/lote">Lote</a></li>
       <li *ngIf="!isLogged"><a rel="preload" href="login">Login</a></li>
       <li *ngIf="isAdmin"><a rel="preload" href="home"> Home </a></li>
+      <li *ngIf="isAdmin"><a href="/home/vendas"> Vendas </a></li>
       <li *ngIf="isLogged">
         <a (click)="logout()"><i class="material-icons">exit_to_app</i></a>
       </li>
