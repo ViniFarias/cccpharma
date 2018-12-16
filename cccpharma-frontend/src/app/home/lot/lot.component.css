@@ -1,0 +1,33 @@
+.root {
+  margin-top: 100px;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.collection-item {
+  height: max-content;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.collection {
+  height: 100%;
+  width: 1000px;
+  border-radius: 20px;
+}
+
+.collection-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr min-content;
+}
+
+p {
+  margin-right: 8px;
+  font-size: 20px;
+}
+
+#modal {
+  width: 400px;
+}

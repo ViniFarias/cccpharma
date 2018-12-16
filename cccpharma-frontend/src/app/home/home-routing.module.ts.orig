@@ -2,14 +2,20 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import {CategoryComponent} from './category/category.component';
+<<<<<<< HEAD
 import { SaleComponent } from './sale/sale.component';
+=======
 import { LotComponent } from './lot/lot.component';
+>>>>>>> f5fe67e738eb8808a0524214bc6b712db6ecfd6b
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'categoria', component: CategoryComponent },
-  { path: 'lote', component: LotComponent },
+<<<<<<< HEAD
   { path: 'vendas', component: SaleComponent }
+=======
+  { path: 'lote', component: LotComponent }
+>>>>>>> f5fe67e738eb8808a0524214bc6b712db6ecfd6b
 ];
 
 @NgModule({
