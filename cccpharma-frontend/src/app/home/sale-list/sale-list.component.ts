@@ -130,7 +130,9 @@ export class SaleListComponent implements OnInit {
   cancelSale(sale: any) {
     this.saleService.cancelSale(sale._id).subscribe( res =>{
       console.log(res);
+      M.toast({html: 'Venda cancelada com sucesso'});
     }, err => {
+      M.toast({html: 'Ocorreu algum erro'});
       console.log(err);
     })
   }
