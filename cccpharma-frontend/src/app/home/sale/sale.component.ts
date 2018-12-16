@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
-import {CategoryService} from '../../services/category.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProductService} from '../../services/product.service';
+import {SaleService} from '../../services/sale.service';
+
+
 declare const $;
 declare const M;
 
@@ -14,36 +16,44 @@ declare const M;
 })
 export class SaleComponent implements OnInit {
 
+
+  CART = 'Carinho';
+  EMPTY_CART = this.CART + ' de compras vazio';
+  PRODUCT = 'Produtos';
+
   products: any;
-  data: any;
 
   name: string;
 
-
+  title: string;
   searchedProducts: any;
+  productsInCart: any;
+
+  qtdForm: FormGroup;
+
+  productSelected: any;
 
   constructor(private authService: AuthService,
-              private categoryService: CategoryService,
+              private saleService: SaleService,
               private formBuilder: FormBuilder,
               private productService: ProductService,
               private router: Router) {
-  	this.getProducts();
-  	this.setData();
+
+    this.title = this.EMPTY_CART;
+    this.getProducts();
     this.searchedProducts = {};
-  }
+    this.productsInCart = [];
+    this.inicializationForm();
+}
 
   ngOnInit() {
   }
 
 
-  ngOnChanges() {
-
-  }
-  ngAfterViewInit() {
-    
-  }
-
-  setData() {
+  inicializationForm() {
+    this.qtdForm = this.formBuilder.group({
+      number: [null, [Validators.required, Validators.min(1)]],
+    });
 
   }
 
@@ -59,34 +69,76 @@ export class SaleComponent implements OnInit {
 
   searchProduct() {
     this.productService.findProductByName(this.name).subscribe( res => {
-      console.log(res);
       this.searchedProducts = res;
-      console.log(this.searchedProducts)
+      this.title = this.PRODUCT;
     }, error1 => {
       console.log(error1);
-       // M.toast({html: 'Um erro aconteceu'});
+       M.toast({html: 'Um erro aconteceu'});
     });
   }
 
 
-  // drawList(products : any) {
-
-  // }
-
-  // addCart(res : any) {
-  //    for (var i = res.length - 1; i >= 0; i--) {
-  //       if(res[i] in this.searchProduct)
-  //    }
-  // }
+  addCart() {
+    this.productsInCart = this.productsInCart.filter(obj => obj.product.name !== this.productSelected.name);
+    this.productsInCart.push({ 'product': this.productSelected, 'productsQuantity': this.qtdForm.get('number').value});
+  }
 
 
-  //  IsPresentArray(product: any) {
-  //    Boolean resp = false.
-  //    this.searchedProducts.forEach((product) {
-  //      console.log(element);
-  //    });
+  openModal(name: string, item: any) {
+    this.productSelected = item;
+    $(document).ready(function() {
+      $(name).modal();
+      $(name).modal('open');
+    });
+  }
 
-  //    retur resp;
-  // }
+  swapCart() {
+    this.title = this.CART;
+    this.searchedProducts = this.getProductByCart();
+  }
+
+
+  getProductByCart() {
+    let products = [];
+
+    for (let i = 0; i < this.productsInCart.length; i++) {
+      products.push(this.productsInCart[i].product);
+    }
+
+    return products;
+
+  }
+
+  purchase() {
+    let body = {};
+    const d = new Date();
+
+    body['saleDate'] = d.getDate() + '/' + (d.getMonth() + 1) + '/' + d.getFullYear();
+    body['value'] = this.getFinalValue();
+    body['soldProducts'] = this.productsInCart;
+    this.saleService.makePurchase(body).subscribe(
+      res => {
+        console.log(res);
+        M.toast({html: 'Compra realizada com sucesso'});
+        this.productsInCart = [];
+      },
+      err => {
+        console.log(err);
+        M.toast({html: 'Ocorreu um erro ao realizar a compra'});
+      });
+  }
+
+  getFinalValue() {
+    let sum = 0;
+
+    for (let i = 0; i < this.productsInCart.length; i++) {
+      sum += this.productsInCart[i].product.price;
+    }
+
+    return sum;
+
+  }
 
 }
+
+

@@ -143,3 +143,8 @@ p {
   margin-top: 10%
 }
 
+.collection-header > a {
+  margin-top: 15%;
+  margin-right: 5%;
+}
+
