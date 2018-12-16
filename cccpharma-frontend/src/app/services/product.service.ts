@@ -49,4 +49,20 @@ export class ProductService {
 
     return request;
   }
+
+  getAvailableQuantityByProductId(product: any) {
+    const productId = product.barcode;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Access-Control-Allow-Origin': '*',
+      })
+    };
+    console.log(this.url);
+
+    const request = this.http.get(this.url + '/' + productId + '/availableQuantity', httpOptions);
+
+    return request;
+
+  }
 }
