@@ -1,16 +1,27 @@
-# CCC-PHARMA
+# CCCPharma
 
-It is a web system that manages the stock of products sold from a pharmacy. In this system, an administrator can register and obtain an overview and control over the operation of the pharmacy, having access to product information, pricing, managing sales and offering personalized services to the customer.
+Projeto final da disciplina Projeto de Software. https://cccpharma-client-web.herokuapp.com/
 
-The customer can also register in the system, and can have access to information that only registered customers have.
 
-Users who are not registered also have access to some information, in a restricted way.
+## Descrição
 
-* [Frontend](https://github.com/ViniFarias/cccpharma/blob/master/cccpharma-frontend/README.md)
+Uma nova farmácia vai ser aberta em Campina Grande e precisa de um sistema que gerencie o estoque de produtos vendidos. Neste sistema, o administrador deve obter uma visão geral e o controle sobre o funcionamento da farmácia, por exemplo, ele deve poder adicionar novos produtos, acompanhar quantas unidades do produto estão disponíveis, alterar preços, ser notificado sobre eventos críticos, gerenciar as vendas e oferecer alguns serviços personalizados para o cliente.
 
-* [Backend](https://github.com/ViniFarias/cccpharma/blob/readme/cccpharma-server/README.md)
 
-# Team:
+## Especificação
+
+A especificação do projeto pode ser vista [aqui](https://docs.google.com/document/d/1CBQE3oAqxi6E-Jn0ri2fZ5Af7_q7HOmSLr_6JSCgjUw/edit)
+
+
+## Camadas do sistema
+
+O sistema é composto por duas camadas principais:
+  * [Backend](https://github.com/ViniFarias/cccpharma/tree/readme/cccpharma-server)
+  * [Frontend](https://github.com/ViniFarias/cccpharma/tree/readme/cccpharma-frontend)
+
+
+## Desenvolvedores
+
 * [André Gomes](https://github.com/Andrezj)
 * [Áxel Medeiros](https://github.com/axelmedeiros)
 * [Jardely Maris](https://github.com/jardelymaris)
