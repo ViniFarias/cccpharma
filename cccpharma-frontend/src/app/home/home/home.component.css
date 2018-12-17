@@ -3,14 +3,13 @@
   padding: 1em;
   width: 100vw;
   height: 90vh;
-  grid-template-columns: 3fr 1em 2fr;
-  grid-template-rows: 2fr 1em 2fr 1em 2fr;
-  grid-template-areas:
-             "lote . receita"
-             ". . ."
-             "estoque . venda"
-             "estoque . ."
-             "estoque . prodfalta";
+  grid-template-columns: 1.75fr 1em 1.75fr 1em 1.75fr;
+  grid-template-rows: 1fr 1em 2fr 1em 2fr;
+  grid-template-areas: "lote . estoque . receita"
+  "lote . estoque . ."
+  "lote . estoque . venda"
+  "lote . estoque . ."
+  "lote . estoque . prodfalta";
   background-color: rgb(241, 241, 241);
 }
 
@@ -41,9 +40,11 @@
   grid-area: prodfalta;
   border-radius: 20px;
   background-color: rgb(255, 255, 255);
+
 }
 
 .receita h2{
+
 }
 
 .lotes {

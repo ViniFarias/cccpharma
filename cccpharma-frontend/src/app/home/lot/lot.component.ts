@@ -77,7 +77,7 @@ export class LotComponent implements OnInit {
     body.product = { 'barcode': body.product};
 
     const date = new Date(body.expirationDate);
-    const newDate = (date.getDay() + '/' + date.getMonth() + '/' + date.getFullYear());
+    const newDate = (date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear());
     body.expirationDate = newDate;
     this.lotService.registerLot(body).subscribe(
       res => {
