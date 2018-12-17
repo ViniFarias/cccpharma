@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import {ProductService} from '../../services/product.service';
 import {LotService} from '../../services/lot.service';
+import {SaleService} from '../../services/sale.service';
 
 declare const M;
 
@@ -23,13 +24,14 @@ export class HomeComponent implements OnInit {
       private authService: AuthService,
       private productService: ProductService,
       private lotService: LotService,
-      // private saleService: SaleService,
+      private saleService: SaleService,
       private router: Router) {
     this.products = [];
     this.missingProducts = [];
     this.sales = [];
     this.getLots();
     this.getProducts();
+    this.getSales();
   }
 
   ngOnInit() {
@@ -66,6 +68,15 @@ export class HomeComponent implements OnInit {
         });
       });
 
+      console.log(res);
+    }, err => {
+      console.log(err);
+    });
+  }
+
+  getSales() {
+    this.saleService.getSales().subscribe(res => {
+      this.sales = res;
       console.log(res);
     }, err => {
       console.log(err);
