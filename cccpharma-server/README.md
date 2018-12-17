@@ -15,10 +15,10 @@ A documentação da API REST pode ser encontrada [aqui](https://cccpharma-server
 
 ## Desenvolvido com
 
-* [SpringBoot](https://spring.io/projects/spring-boot) - Framework para criação do servidor
+* [SpringBoot](https://spring.io/projects/spring-boot) - Framework para criação de aplicações no lado servidor
 * [MySQL](https://www.mysql.com/) - Sistema de gerenciamento de banco de dados SQL
 * [Maven](https://maven.apache.org/) - Gerenciador de dependências
-* [Swagger](https://swagger.io/) - Ferramenta para criação da documentação da API REST
+* [Swagger](https://swagger.io/) - Ferramenta para criação de documentação para APIs REST
 
 
 ## Desenvolvedores
