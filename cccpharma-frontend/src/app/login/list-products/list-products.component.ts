@@ -105,7 +105,7 @@ export class ListProductsComponent implements OnInit {
   }
 
   sortArray(type) {
-    this.products.sort((a: any, b: any) => {
+    this.itens.sort((a: any, b: any) => {
       if (a[type] < b[type]) {
         return -1;
       } else if (a[type] > b[type]) {
