@@ -57,7 +57,7 @@ export class LotComponent implements OnInit {
   }
 
   getProducts() {
-    this.productService.getAllProject().subscribe(res => {
+    this.productService.getAllProducts().subscribe(res => {
       this.products = res;
       console.log(res);
     }, err => {

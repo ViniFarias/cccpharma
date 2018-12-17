@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '../../../node_modules/@angular/common/http';
+import {HttpClient} from '../../../node_modules/@angular/common/http';
 import {AuthService} from './auth.service';
 import {environment} from '../../environments/environment';
 
@@ -17,28 +17,14 @@ export class CategoryService {
   }
 
   getCategories() {
-    const token = this.authService.getToken();
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Authorization': token
-      })
-    };
+    const httpOptions = this.authService.getHttpHeadersWithToken();
     const request = this.http.get(this.url, httpOptions);
 
     return request;
   }
 
   editCategory(category: any) {
-    const token = this.authService.getToken();
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Authorization': token
-      })
-    };
+    const httpOptions = this.authService.getHttpHeadersWithToken();
     const request = this.http.post(this.url, category, httpOptions);
 
     return request;

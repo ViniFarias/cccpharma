@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '../../../node_modules/@angular/common/http';
+import { HttpClient } from '../../../node_modules/@angular/common/http';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -14,14 +14,7 @@ export class UsersService {
   }
 
   createUser(body: any) {
-
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Access-Control-Allow-Origin': '*'
-      })
-    };
-
+    const httpOptions = this.authService.getHttpHeadersWithoutToken();
     const request = this.http.post(this.url + '/registration', body, httpOptions);
 
     return request;

@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit {
   }
 
   getProducts() {
-    this.productService.getAllProject().subscribe((res: any) => {
+    this.productService.getAllProducts().subscribe((res: any) => {
 
       res.forEach((product: any) => {
 
