@@ -1,6 +1,10 @@
 # Backend
 
-In this project MySQL Server 5.7.21 was used, the development environment was the IntelliJ IDE Ultimate and we used Spring Boot.
+In this project we use the following technologies:
+
+* MySQL Server;
+* IntelliJ IDE Ultimate; 
+* Spring Boot.
 
 # Api
 
