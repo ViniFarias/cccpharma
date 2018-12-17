@@ -20,11 +20,9 @@
     <h5>Registro de vendas</h5>
     <div>
       <ul class="collection">
-        <li *ngFor="let item of lots;" class="collection-item">
-          <p class="item-title"> {{ item.product.name}}</p>
-          <p> Número do lote: {{item.id}}</p>
-          <p> Quantidade disponível: {{item.availableProductsQuantity}}</p>
-          <p> Fabricante: {{item.product.manufacturer}}</p>
+        <li *ngFor="let item of sales;" class="collection-item">
+          <p> Data da venda: {{item.saleDate}}</p>
+          <p> Valor: R$ {{item.value}}</p>
         </li>
       </ul>
     </div>
@@ -32,7 +30,7 @@
 
   <div class="receita flexbox">
     <h5>Receita arrecadada</h5>
-    <h1 id="valorReceita">R$ 1000,00</h1>
+    <h3 id="valorReceita">R$ {{receita}}</h3>
   </div>
 
   <div class="pfalta flexbox">

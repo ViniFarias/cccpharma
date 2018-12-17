@@ -1,0 +1,34 @@
+<div class="grid">
+
+  <div class="row box">
+    <ul class="collection with-header">
+      <li class="collection-header">
+        <h4> Vendas </h4><br>
+        <a  (click)="openDropdow()" id="openDropdow" data-target='dropdown1' class="dropdown-trigger btn-floating btn option">
+          <i class="material-icons">filter_list</i>
+        </a>
+      </li>
+      <li class="collection-item" *ngFor="let item of sales">
+        <div id="item" class="col s10">
+          <p>Valor: {{ item.value }} R$</p>
+          <p>Data: {{ item.saleDate }}</p>
+          <p>Nº produtos: {{ item.soldProducts.length }}</p>
+
+        </div>
+
+        <div class="col s2">
+          <a (click)="cancelSale(item)" id="edit-button" class="waves-effect waves-light btn">Cancelar</a>
+
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- Dropdown Structure -->
+<ul id='dropdown1' class='dropdown-content'>
+  <li><a (click)="selectFilter('value')"> Valor </a></li>
+  <li><a (click)="selectFilter('saleDate')"> Data </a></li>
+
+</ul>
