@@ -11,7 +11,7 @@ Users who are not registered also have access to some information, in a restrict
 * [Backend](https://github.com/ViniFarias/cccpharma/blob/readme/cccpharma-server/README.md)
 
 # Team:
-* [Áxel Medeiros](https://github.com/axelmedeiros)
 * [André Gomes](https://github.com/Andrezj)
+* [Áxel Medeiros](https://github.com/axelmedeiros)
 * [Jardely Maris](https://github.com/jardelymaris)
 * [Marcus Vinicius](https://github.com/ViniFarias)
