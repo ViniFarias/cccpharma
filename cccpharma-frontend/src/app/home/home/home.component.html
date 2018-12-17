@@ -20,7 +20,7 @@
     <h5>Registro de vendas</h5>
     <div>
       <ul class="collection">
-        <li *ngFor="let item of lots;" class="collection-item">
+        <li *ngFor="let item of sales;" class="collection-item">
           <p> Data da venda: {{item.saleDate}}</p>
           <p> Valor: R$ {{item.value}}</p>
         </li>
@@ -30,7 +30,7 @@
 
   <div class="receita flexbox">
     <h5>Receita arrecadada</h5>
-    <h3 id="valorReceita">R$ 1000,00</h3>
+    <h3 id="valorReceita">R$ {{receita}}</h3>
   </div>
 
   <div class="pfalta flexbox">

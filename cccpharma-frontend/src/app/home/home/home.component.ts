@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   products: any;
   missingProducts: any;
   sales: any;
+  receita: any;
 
 
   constructor(
@@ -32,6 +33,7 @@ export class HomeComponent implements OnInit {
     this.getLots();
     this.getProducts();
     this.getSales();
+    this.receita = 0;
   }
 
   ngOnInit() {
@@ -75,8 +77,10 @@ export class HomeComponent implements OnInit {
   }
 
   getSales() {
-    this.saleService.getSales().subscribe(res => {
+    this.saleService.getSales().subscribe((res: any) => {
+      this.receita = 0;
       this.sales = res;
+      this.sales.forEach((sale: any) => {this.receita += sale.value;});
       console.log(res);
     }, err => {
       console.log(err);
