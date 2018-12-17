@@ -8,8 +8,8 @@
       </li>
       <li class="collection-item" *ngFor="let item of categories; let i = index">
         <div class="col s10" id="item">
-          <p> Nome: {{ item.name}},</p>
-          <p> Desconto: {{ formatDiscont(item)}}%</p>
+          <p class="item"> Nome: {{ item.name}},</p>
+          <p class="item"> Desconto: {{ formatDiscont(item)}}%</p>
 
         </div>
         <div *ngIf="isAdmin()" class="col s2">
