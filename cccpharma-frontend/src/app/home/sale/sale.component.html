@@ -28,7 +28,7 @@
     <ul class="collection with-header">
       <li class="collection-header">
         <h4> {{ title }} </h4><br>
-        <a *ngIf="title === CART" (click)="purchase()" class="waves-effect waves-light btn">Comprar</a>
+        <a *ngIf="title === CART && productsInCart.length > 0" (click)="purchase()" class="waves-effect waves-light btn">Comprar</a>
         <a *ngIf="title !== CART" (click)="swapCart()" class="waves-effect waves-light btn">Carrinho</a>
       </li>
       <li class="collection-item" *ngFor="let item of searchedProducts">
