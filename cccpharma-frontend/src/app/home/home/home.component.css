@@ -1,0 +1,99 @@
+.root{
+  display: grid;
+  padding: 1em;
+  width: 100vw;
+  height: 90vh;
+  grid-template-columns: 1.75fr 1em 1.75fr 1em 1.75fr;
+  grid-template-rows: 1fr 1em 2fr 1em 2fr;
+  grid-template-areas: "lote . estoque . receita"
+  "lote . estoque . ."
+  "lote . estoque . venda"
+  "lote . estoque . ."
+  "lote . estoque . prodfalta";
+  background-color: rgb(241, 241, 241);
+}
+
+.estoque {
+  grid-area: estoque;
+  border-radius: 20px;
+  background-color: rgb(255, 255, 255);
+}
+
+.lotes h2{
+  text-align: justify;
+}
+
+.vendas {
+  display: flex;
+  grid-area: venda;
+  border-radius: 20px;
+  background-color: rgb(255, 255, 255);
+  border: #000 1px;
+}
+
+.vendas h2{
+  text-align: justify;
+}
+
+.pfalta {
+  display: flex;
+  grid-area: prodfalta;
+  border-radius: 20px;
+  background-color: rgb(255, 255, 255);
+
+}
+
+.receita h2{
+
+}
+
+.lotes {
+  display: flex;
+  grid-area: lote;
+  background-color: rgb(255, 255, 255);
+}
+
+.receita{
+  display: flex;
+  grid-area: receita;
+  background-color: rgb(255, 255, 255);
+}
+
+.flexbox {
+  display: flex;
+  padding-left: 1em;
+  padding-top: 1em;
+  flex-direction: column;
+  overflow: auto;
+  border-radius: 10px;
+}
+
+h5 {
+  margin: 0;
+  position: sticky;
+}
+
+ul {
+  border-left: none;
+  border-right: none;
+}
+
+p {
+  padding: 0;
+  margin: 0;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+.item-title {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+#valorReceita {
+  color: #2ec448;
+  align-self: center;
+  margin-top: 10px;
+}

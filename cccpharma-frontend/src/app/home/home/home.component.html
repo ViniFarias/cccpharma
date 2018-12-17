@@ -1,3 +1,65 @@
-<p>
-  home works!
-</p>
+<div class="root">
+  <div class="estoque flexbox">
+    <h5>Produtos em estoque</h5>
+
+    <div>
+      <ul class="collection">
+        <li *ngFor="let item of products;" class="collection-item">
+          <p class="item-title"> {{ item.name}}</p>
+          <p> Código de barra: {{item.barcode}}</p>
+          <p> Preço: R$ {{item.price}}</p>
+          <p> Quantidade disponível: {{item.availableQuantity}}</p>
+          <p> Categoria: {{item.category.name}}</p>
+          <p> Fabricante: {{item.manufacturer}}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="vendas flexbox">
+    <h5>Registro de vendas</h5>
+    <div>
+      <ul class="collection">
+        <li *ngFor="let item of lots;" class="collection-item">
+          <p> Data da venda: {{item.saleDate}}</p>
+          <p> Valor: R$ {{item.value}}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="receita flexbox">
+    <h5>Receita arrecadada</h5>
+    <h3 id="valorReceita">R$ 1000,00</h3>
+  </div>
+
+  <div class="pfalta flexbox">
+    <h5>Produtos em falta</h5>
+    <div>
+      <ul class="collection">
+        <li *ngFor="let item of missingProducts;" class="collection-item">
+          <p class="item-title"> {{ item.name}}</p>
+          <p> Código de barra: {{item.barcode}}</p>
+          <p> Preço: R$ {{item.price}}</p>
+          <p> Categoria: {{item.category.name}}</p>
+          <p> Fabricante: {{item.manufacturer}}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="lotes flexbox">
+    <h5>Lotes</h5>
+    <div>
+      <ul class="collection">
+        <li *ngFor="let item of lots;" class="collection-item">
+          <p class="item-title"> {{ item.product.name}}</p>
+          <p> Número do lote: {{item.id}}</p>
+          <p> Quantidade disponível: {{item.availableProductsQuantity}}</p>
+          <p> Fabricante: {{item.product.manufacturer}}</p>
+          <p> Data de validade: {{item.expirationDate}}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
