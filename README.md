@@ -16,8 +16,8 @@ A especificação do projeto pode ser vista [aqui](https://docs.google.com/docum
 ## Camadas do sistema
 
 O sistema é composto por duas camadas principais:
-  * [Backend](https://github.com/ViniFarias/cccpharma/tree/readme/cccpharma-server)
-  * [Frontend](https://github.com/ViniFarias/cccpharma/tree/readme/cccpharma-frontend)
+  * [Backend](https://github.com/ViniFarias/cccpharma/tree/master/cccpharma-server)
+  * [Frontend](https://github.com/ViniFarias/cccpharma/tree/master/cccpharma-frontend)
 
 
 ## Desenvolvedores
