@@ -173,9 +173,6 @@ form.a {
     width: 300px;
 }
 
-.unavailable {
-    background: rgb(169,169,169);
-}
 
 .unavailable  {
     background: none;
@@ -198,4 +195,8 @@ form.a {
 
 #edit-button {
     margin-top: 25%
+}
+
+.unavailable {
+  color: #ee6e73;
 }

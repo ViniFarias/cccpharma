@@ -54,7 +54,7 @@ export class ListProductsComponent implements OnInit {
     });
 
     this.priceForm = this.formBuilder.group({
-      price: [null, [Validators.required]],
+      price: [null, [Validators.required, Validators.min(0)]],
     });
 
   }
@@ -89,7 +89,7 @@ export class ListProductsComponent implements OnInit {
 
   selectOption(name: string) {
     this.color(name);
-    this.showCategory(name.replace('Color',''));
+    this.showCategory();
 
     if (this.category === 'Produtos') {
       this.itens = this.products;
@@ -116,7 +116,7 @@ export class ListProductsComponent implements OnInit {
     });
   }
 
-  showCategory(name) {
+  showCategory() {
     let resp = '';
 
     if (this.selectAllColor) {
@@ -187,7 +187,9 @@ export class ListProductsComponent implements OnInit {
     body.category = { 'id': body.category};
     this.productService.registerProduct(body).subscribe(
       res => {
-        M.toast({html: 'Cadastro Realizado com sucesso'})
+        M.toast({html: 'Cadastro Realizado com sucesso'});
+        this.getAllProducts();
+        this.selectOption(this.category);
         console.log(res);
       }, err => {
         M.toast({html: 'Um erro aconteceu ao tentar cadastrar um produto'})
@@ -210,7 +212,6 @@ export class ListProductsComponent implements OnInit {
   savePriceProduct() {
      let product = Object.assign({}, this.productSeleted);
      product.price = this.priceForm.get('price').value;
-     console.log(this.productSeleted);
      this.productService.registerProduct(product).subscribe(
       res => {
         M.toast({html: 'Produdo Atualizado com sucesso'})
@@ -222,6 +223,10 @@ export class ListProductsComponent implements OnInit {
       }
     );
 
+  }
+
+  showPrice(item: any) {
+    return !this.checkDiscount(item) && item.available;
   }
 
 }
