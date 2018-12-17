@@ -55,7 +55,7 @@ export class SaleService {
       })
     };
 
-    const request = this.http.delete(this.url + id, httpOptions);
+    const request = this.http.delete(this.url + '/' + id, httpOptions);
 
     return request;
   }

@@ -14,79 +14,8 @@ export class SaleListComponent implements OnInit {
   sales: any;
 
   constructor(private saleService: SaleService) {
-    this.sales = [
-      {
-        'id': 0,
-        'saleDate': '15/11/2018',
-        'soldProducts': [
-          {
-            'id': 0,
-            'product': {
-              'available': true,
-              'barcode': 'string',
-              'category': {
-                'discount': 0,
-                'id': 0,
-                'name': 'Categoria'
-              },
-              'manufacturer': 'string',
-              'name': 'string',
-              'price': 0
-            },
-            'productsQuantity': 0
-          }
-        ],
-        'value': 1000
-      },
-
-      {
-        'id': 0,
-        'saleDate': '20/11/2018',
-        'soldProducts': [
-          {
-            'id': 0,
-            'product': {
-              'available': true,
-              'barcode': '111231',
-              'category': {
-                'discount': 0,
-                'id': 0,
-                'name': 'Alimento'
-              },
-              'manufacturer': 'Fazenda',
-              'name': 'Galinha',
-              'price': 10
-            },
-            'productsQuantity': 1
-          }
-        ],
-        'value': 200
-      },
-
-      {
-        'id': 0,
-        'saleDate': '30/10/2018',
-        'soldProducts': [
-          {
-            'id': 0,
-            'product': {
-              'available': true,
-              'barcode': '111231',
-              'category': {
-                'discount': 0,
-                'id': 0,
-                'name': 'Alimento'
-              },
-              'manufacturer': 'Fazenda',
-              'name': 'Galinha',
-              'price': 10
-            },
-            'productsQuantity': 1
-          }
-        ],
-        'value': 200
-      }
-    ];
+    this.sales = [];
+    this.getSales();
   }
 
   ngOnInit() {
@@ -94,6 +23,7 @@ export class SaleListComponent implements OnInit {
 
   getSales() {
     this.saleService.getSales().subscribe( res => {
+      this.sales = res;
       console.log(res);
     }, err => {
       console.log(err);
@@ -128,8 +58,9 @@ export class SaleListComponent implements OnInit {
   }
 
   cancelSale(sale: any) {
-    this.saleService.cancelSale(sale._id).subscribe( res =>{
+    this.saleService.cancelSale(sale.id).subscribe( res =>{
       console.log(res);
+      this.sales = this.sales.filter(obj => obj !== sale);
       M.toast({html: 'Venda cancelada com sucesso'});
     }, err => {
       M.toast({html: 'Ocorreu algum erro'});

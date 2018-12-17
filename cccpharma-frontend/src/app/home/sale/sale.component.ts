@@ -79,6 +79,7 @@ export class SaleComponent implements OnInit {
 
 
   addCart() {
+    M.toast({html: 'Adicionado ao carrinho'});
     this.productsInCart = this.productsInCart.filter(obj => obj.product.name !== this.productSelected.name);
     this.productsInCart.push({ 'product': this.productSelected, 'productsQuantity': this.qtdForm.get('number').value});
   }
@@ -116,6 +117,7 @@ export class SaleComponent implements OnInit {
     body['saleDate'] = d.getDate() + '/' + (d.getMonth() + 1) + '/' + d.getFullYear();
     body['value'] = this.getFinalValue();
     body['soldProducts'] = this.productsInCart;
+
     this.saleService.makePurchase(body).subscribe(
       res => {
         console.log(res);

@@ -67,4 +67,19 @@ export class ProductService {
     return request;
     
   }
+
+
+  availableQuantityProduct(id: string) {
+    const token = this.authService.getToken();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': token
+      })
+    };
+    const newUrl = this.url + '/' + id + '/availableQuantity';
+    const request = this.http.get(newUrl + '', httpOptions);
+    return request;
+  }
 }
