@@ -72,7 +72,7 @@ form.a {
 }
 
 .collection-item {
-  height: 80px;
+  height: 100px;
 }
 
 .dropdown-content{
@@ -110,6 +110,7 @@ form.a {
 }
 
 p {
+  margin-top: 0%;
   margin-right: 10px;
   font-size: 20px;
 }
