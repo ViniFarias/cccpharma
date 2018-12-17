@@ -11,26 +11,19 @@ export class AuthService {
   TYPE = 'TYPE';
   ADMIN = 'ADMIN';
   CLIENT = 'CLIENT';
-  TOKEN = 'TOKEN'
+  TOKEN = 'TOKEN';
 
   url: string;
 
-  constructor(
-    private router: Router,
-    private http: HttpClient) 
-  { 
+  constructor(private router: Router,
+              private http: HttpClient) {
     this.url = environment.API + '/login';
   }
 
   login(body: any) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Access-Control-Allow-Origin': '*'
-      })
-    };
+    const httpOptions = this.getHttpHeadersWithoutToken();
     const request = this.http.post(this.url, body, httpOptions);
-    console.log(this.url);
+
     request.subscribe( res => {
       const token = res['accessToken'];
       localStorage.setItem(this.TOKEN, token);
@@ -72,6 +65,28 @@ export class AuthService {
     } else {
       return false;
     }
+  }
+
+
+  getHttpHeadersWithToken() {
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type':  'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Authorization': this.getToken()
+        })
+      };
+      return httpOptions;
+  }
+
+  getHttpHeadersWithoutToken() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Access-Control-Allow-Origin': '*'
+      })
+    };
+    return httpOptions;
   }
 
 }

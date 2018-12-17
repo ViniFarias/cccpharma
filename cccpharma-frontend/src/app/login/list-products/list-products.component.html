@@ -22,28 +22,25 @@
           <h4>{{ category }}</h4><br> 
           <a *ngIf="isAdmin()" (click)="openModal('#modal1')" id="add_product" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
         </li>
-        <li [ngClass]="{'unavailable': !item.available}" (click)="isAdmin() && editProduct(item)" 
+        <li (click)="isAdmin() && editProduct(item)"
             class="collection-item" *ngFor="let item of itens; let i = index">
             <div class="col s10">
                 <div  id = "names">
-                  <strong>{{ item.name }} </strong><br>
+                  <strong>{{ item.name }}</strong><br>
+                  <p class="unavailable" *ngIf="!item.available" >(INDISPONIVEL)</p>
+
                 </div> 
-                <div *ngIf = "checkDiscount(item); else elseBlock">
+                <div *ngIf = "checkDiscount(item)">
                     <br><div id = "prices">
                     <strong>Preço:  {{ calculePrice(item) }} R$</strong> <br>
                   </div>
                 </div>
-                <ng-template #elseBlock>
-                  <div id = "realPrices">
-                    <strong><s>Preço: {{ item.price }} R$ </s></strong> <br>
-                  </div>
-                  <div id = "discounts">
-                    <strong>Desconto:  {{ calculePrice(item) }} R$!</strong>
-                  </div>
-                </ng-template>
-            </div>
-            <div *ngIf="isAdmin()" class="col s2">
-                <!--<a id="edit-button" (click)="editProduct()" class="waves-effect waves-light btn">Editar Preço</a> Remover depois-->
+                <div *ngIf = "showPrice(item)" id = "realPrices">
+                  <strong><s>Preço: {{ item.price }} R$ </s></strong> <br>
+                </div>
+                <div *ngIf = "showPrice(item)" id = "discounts">
+                  <strong>Desconto:  {{ calculePrice(item) }} R$!</strong>
+                </div>
             </div>
         </li>
       </ul>
@@ -127,6 +124,6 @@
     </form>
   </div>
   <div class="modal-footer">
-    <a (click)="savePriceProduct()" href="#!" class="modal-close waves-effect waves-green btn-flat">Salvar</a>
+    <a *ngIf="priceForm.valid" (click)="savePriceProduct()" href="#!" class="modal-close waves-effect waves-green btn-flat">Salvar</a>
   </div>
 </div>

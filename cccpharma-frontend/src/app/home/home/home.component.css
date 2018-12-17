@@ -8,8 +8,8 @@
   grid-template-areas: "lote . estoque . receita"
                        "lote . estoque . ."
                        "lote . estoque . venda"
-                       "lote . estoque . ."
-                       "lote . estoque . prodfalta";
+                       "lote . . . ."
+                       "lote . prodvencidos . prodfalta";
   background-color: rgb(241, 241, 241);
 }
 
@@ -40,7 +40,6 @@
   grid-area: prodfalta;
   border-radius: 20px;
   background-color: rgb(255, 255, 255);
-
 }
 
 .lotes {
@@ -52,6 +51,12 @@
 .receita{
   display: flex;
   grid-area: receita;
+  background-color: rgb(255, 255, 255);
+}
+
+.prodvencidos {
+  display: flex;
+  grid-area: prodvencidos;
   background-color: rgb(255, 255, 255);
 }
 
