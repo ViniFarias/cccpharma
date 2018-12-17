@@ -6,10 +6,10 @@
   grid-template-columns: 1.75fr 1em 1.75fr 1em 1.75fr;
   grid-template-rows: 1fr 1em 2fr 1em 2fr;
   grid-template-areas: "lote . estoque . receita"
-  "lote . estoque . ."
-  "lote . estoque . venda"
-  "lote . estoque . ."
-  "lote . estoque . prodfalta";
+                       "lote . estoque . ."
+                       "lote . estoque . venda"
+                       "lote . estoque . ."
+                       "lote . estoque . prodfalta";
   background-color: rgb(241, 241, 241);
 }
 
@@ -43,10 +43,6 @@
 
 }
 
-.receita h2{
-
-}
-
 .lotes {
   display: flex;
   grid-area: lote;
@@ -61,8 +57,7 @@
 
 .flexbox {
   display: flex;
-  padding-left: 1em;
-  padding-top: 1em;
+  padding: 1em;
   flex-direction: column;
   overflow: auto;
   border-radius: 10px;
@@ -84,7 +79,7 @@ p {
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 0px;
 }
 
 .item-title {
