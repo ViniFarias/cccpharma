@@ -54,4 +54,12 @@ export class ProductService {
 
     return request;
   }
+
+  productIsValid(product: any) {
+    const productId = product.barcode;
+    const httpOptions = this.authService.getHttpHeadersWithoutToken();
+    const request = this.http.get(this.url + '/' + productId + '/availableQuantity', httpOptions);
+
+    return request;
+  }
 }

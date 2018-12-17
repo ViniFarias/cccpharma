@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   missingProducts: any;
   sales: any;
   receita: any;
+  invalidProducts: any;
 
 
   constructor(
@@ -29,6 +30,7 @@ export class HomeComponent implements OnInit {
       private router: Router) {
     this.products = [];
     this.missingProducts = [];
+    this.invalidProducts = [];
     this.sales = [];
     this.getLots();
     this.getProducts();
@@ -59,11 +61,23 @@ export class HomeComponent implements OnInit {
 
         this.productService.getAvailableQuantityByProductId(product).subscribe(res2 => {
           product.availableQuantity = res2;
+
           if (res2 === null) {
             this.missingProducts.push(product);
           } else {
-            this.products.push(product);
-          }
+
+            this.productService.productIsValid(product).subscribe(res3 => {
+              product.isValid = res3;
+              if (res3 === false) {
+                this.invalidProducts.push(product);
+              } else {
+                this.products.push(product);
+              }
+              console.log(res3);
+            }, err => {
+              console.log(err);
+            });
+        }
           console.log(res2);
         }, err => {
           console.log(err);
