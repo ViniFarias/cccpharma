@@ -6,5 +6,12 @@ The customer can also register in the system, and can have access to information
 
 Users who are not registered also have access to some information, in a restricted way.
 
-[Front](https://github.com/ViniFarias/cccpharma/blob/master/cccpharma-frontend/README.md)
-[Back](https://github.com/ViniFarias/cccpharma/blob/readme/cccpharma-server/README.md)
+* [Frontend](https://github.com/ViniFarias/cccpharma/blob/master/cccpharma-frontend/README.md)
+
+* [Backend](https://github.com/ViniFarias/cccpharma/blob/readme/cccpharma-server/README.md)
+
+# Team:
+* [Áxel Medeiros](https://github.com/axelmedeiros)
+* [André Gomes](https://github.com/Andrezj)
+* [Jardely Maris](https://github.com/jardelymaris)
+* [Marcus Vinicius](https://github.com/ViniFarias)
